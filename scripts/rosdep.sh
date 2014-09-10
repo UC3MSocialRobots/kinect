@@ -1,11 +1,11 @@
 #!/bin/sh
 # External, ROS and system package dependencies
 
-PACKAGES="ros-groovy-openni-camera
-          ros-groovy-openni-tracker
-          ros-groovy-openni-launch
-          ros-groovy-kdl
-          ros-groovy-orocos-kinematics-dynamics"
+PACKAGES="ros-indigo-openni-camera
+          ros-indigo-openni-launch
+          ros-indigo-orocos-kinematics-dynamics"
+          #ros-indigo-openni-tracker
+          #ros-indigo-kdl
 
 sudo apt-get install $PACKAGES
 

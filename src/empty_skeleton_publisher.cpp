@@ -29,7 +29,7 @@ ________________________________________________________________________________
  */
 
 #include <ros/ros.h>
-#include <kinect/NiteSkeletonList.h>
+#include "NiteSkeletonLite.h"
 #include <sensor_msgs/Image.h>
 #include <sensor_msgs/CompressedImage.h>
 #include <rosgraph_msgs/Clock.h>

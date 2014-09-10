@@ -30,7 +30,7 @@ ________________________________________________________________________________
 #ifdef NITE_FX
 #include <src/NiteSkeletonLite.h>
 #else  // not NITE_FX
-#include <kinect/NiteSkeletonList.h>
+//#include "kinect/NiteSkeletonList.h"
 #endif // not NITE_FX
 
 #include <opencv2/highgui/highgui.hpp>

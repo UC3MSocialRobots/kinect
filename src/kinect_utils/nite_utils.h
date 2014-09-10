@@ -32,8 +32,8 @@ ________________________________________________________________________________
 // NITE
 #include <XnCppWrapper.h>
 // AD
-#include "src/string/StringUtils.h"
-#include "src/system/system_utils.h"
+#include "string/StringUtils.h"
+#include "system/system_utils.h"
 
 namespace nite_utils {
 

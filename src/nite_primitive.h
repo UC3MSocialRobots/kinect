@@ -106,7 +106,7 @@ along with a message enclosing their 3D position.
 #include <image_transport/image_transport.h>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
-#include "src/kinect_utils/kinect_openni_utils.h"
+#include "kinect_utils/kinect_openni_utils.h"
 #endif // NITE_FX not defined
 
 // NITE

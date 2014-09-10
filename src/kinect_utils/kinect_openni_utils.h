@@ -37,8 +37,8 @@ useful functions for working with a Kinect
 #include <ros/package.h>
 // OpenCV
 #include <opencv2/core/core.hpp>
-#include <src/kinect_utils/std_utils.h>
-#include <src/kinect_utils/color_utils_ros.h>
+#include "kinect_utils/std_utils.h"
+#include "kinect_utils/color_utils_ros.h"
 
 
 inline std::string KINECT_SERIAL_ARNAUD() { return "A00365A10630110A"; }
