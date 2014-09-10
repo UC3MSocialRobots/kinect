@@ -1,0 +1,18 @@
+<launch>
+<arg name="robot" value="kinect_only"/>
+<group ns="$(arg robot)">
+  <!-- fake openni manager -->
+  <node pkg="nodelet" type="nodelet" name="kinect_only_camera_nodelet_manager" args="manager"
+        output="screen"
+        launch-prefix="" />
+
+  <!-- the primitive
+      note: no use to set parameters here, set them in nite_primitive.cpp -->
+  <node pkg="nodelet" type="nodelet" name="NitePrimitive"
+        args="load nite_nodelet_ns/NitePrimitive kinect_only_camera_nodelet_manager" />
+
+  <!-- publish kinect serial -->
+  <node pkg="kinect" type="publish_kinect_serial.exe"
+        name="publish_kinect_serial"  output="screen"/>
+</group>
+</launch>

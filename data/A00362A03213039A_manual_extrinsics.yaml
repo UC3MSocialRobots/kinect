@@ -1,0 +1,28 @@
+camera_pose: 
+  - 
+    position: 
+      x: -9.0565243933e-10
+      y: 3.82997636131e-08
+      z: -1.06671083503e-08
+    orientation: 
+      x: 8.008553106e-09
+      y: 4.02636574842e-09
+      z: 2.1699421679e-09
+      w: 1.0
+  - 
+    position: 
+      x: -0.0207768884171
+      y: 0.0138151761443
+      z: -0.0482344435764
+    orientation: 
+      x: -0.00896165368373
+      y: -0.0150037748811
+      z: -0.00395655698917
+      w: 0.999839447691
+camera_id: ['/camera_rgb_optical_frame', '/camera_depth_optical_frame']
+time_stamp: 
+  - 
+    secs: 1375551279
+    nsecs: 737913134
+m_count: 1
+---

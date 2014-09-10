@@ -1,0 +1,44 @@
+<OpenNI>
+  <!-- from https://groups.google.com/forum/#!topic/openni-dev/At4l0Tz7UWM
+  For color image
+  FPS=15  @ 1280x1024
+  FPS = 30 @ 640x480
+
+  for depth
+  FPS=30 @ 640x480
+  -->
+  <Licenses>
+  </Licenses>
+  <Log writeToConsole="false" writeToFile="false">
+    <!-- 0 - Verbose, 1 - Info, 2 - Warning, 3 - Error (default) -->
+    <LogLevel value="3"/>
+    <Masks>
+      <Mask name="ALL" on="true"/>
+    </Masks>
+    <Dumps>
+    </Dumps>
+  </Log>
+  <ProductionNodes>
+    <Node type="Depth" name="Depth1">
+      <Configuration>
+        <MapOutputMode xRes="640" yRes="480" FPS="30"/>
+<!--
+        <MapOutputMode xRes="320" yRes="240" FPS="30"/>
+        <MapOutputMode xRes="160" yRes="120" FPS="30"/>
+-->
+        <Mirror on="false"/>
+      </Configuration>
+    </Node>
+
+    <Node type="Image" name="Image1">
+      <Configuration>
+        <MapOutputMode xRes="640" yRes="480" FPS="30"/>
+<!--
+        <MapOutputMode xRes="320" yRes="240" FPS="30"/>
+        <MapOutputMode xRes="160" yRes="120" FPS="30"/>
+-->
+        <Mirror on="false"/>
+      </Configuration>
+    </Node>
+  </ProductionNodes>
+</OpenNI>

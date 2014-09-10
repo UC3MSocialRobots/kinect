@@ -1,0 +1,20 @@
+<launch>
+<arg name="robot"/>
+<group ns="$(arg robot)">
+  <node pkg="image_view" type="image_view" output="screen"
+        name="kinect_rgb_viewer"
+        args="image:=rgb _image_transport:=raw"/>
+<!--
+        args="image:=/$(arg robot)_camera/rgb/image _image_transport:=raw"/>
+-->
+
+  <node pkg="compressed_rounded_image_transport" type="depth_to_rgb_viewer.exe"
+        name="kinect_depth_viewer"
+        output="screen"
+        args="_input_topic:=depth _image_transport:=raw"
+        />
+<!--
+        args="_input_topic:=/$(arg robot)_camera/depth/image _image_transport:=raw"/>
+-->
+</group>
+</launch>

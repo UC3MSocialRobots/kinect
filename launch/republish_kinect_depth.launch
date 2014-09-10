@@ -1,0 +1,15 @@
+<launch>
+<arg name="robot"/>
+<group ns="$(arg robot)">
+  <node pkg="image_transport" type="republish" name="decompress_depth"
+          output="screen"  args="compressedDepth in:=/$(arg robot)_camera/depth_registered/image_rect
+                                 raw                out:=depth"/>
+
+  <!--
+    Compressed version:
+    rostopic bw /camera/depth_registered/image_rect/compressed_rounded
+    Decompressed version:
+    rostopic bw /depth
+  -->
+</group>
+</launch>

@@ -1,0 +1,19 @@
+<launch>
+<arg name="robot"/>
+<arg name="kinect_aux_tf_broadcaster_args" />
+<group ns="$(arg robot)">
+  <!--  rostopic pub /kinect_only/tilt_angle std_msgs/Float64 '{data: -50}'
+        rostopic echo /kinect_only/cur_tilt_angle
+        rostopic pub /nite_only/tilt_angle std_msgs/Float64 '{data: -50}'
+        rostopic echo /nite_only/cur_tilt_angle
+  -->
+  <node pkg="kinect" type="kinect_aux_node" name="kinect_aux_node" output="screen" />
+
+  <!-- the compulsoory arg given to the kinect_aux_tf_broadcaster.
+       It should at least contain "_frame_id:=XXX  _child_frame_id:=XXX" -->
+  <node pkg="kinect" type="kinect_aux_tf_broadcaster" name="kinect_aux_tf_broadcaster"
+        output="screen"
+        args="$(arg kinect_aux_tf_broadcaster_args)"/>
+</group>
+</launch>
+

@@ -1,0 +1,33 @@
+<launch>
+<arg name="use_openni2" default="false"/>
+<arg name="robot"/>
+
+<!-- pass calibration files if needed -->
+<arg name="rgb_camera_info_url"   default="" />
+<arg name="depth_camera_info_url" default="" />
+<arg name="depth_registration" default="true" />
+<arg name="publish_tf" default="true" />
+
+<!-- OpenNI1 .* remappings -->
+<remap unless="$(arg use_openni2)"
+       from="/$(arg robot)_camera/rgb/image_rect_color" to="/$(arg robot)/rgb"/>
+<remap unless="$(arg use_openni2)"
+       from="/$(arg robot)_camera/depth_registered/image_rect" to="/$(arg robot)/depth"/>
+
+<!-- OpenNI 2.* remappings -->
+<remap if="$(arg use_openni2)"
+       from="/$(arg robot)_camera/rgb/image" to="/$(arg robot)/rgb"/>
+<remap if="$(arg use_openni2)"
+       from="/$(arg robot)_camera/depth/image" to="/$(arg robot)/depth"/>
+
+<!-- include kinect_node and pass the params -->
+<include file="$(find kinect)/launch/kinect_node.launch">
+  <arg name="robot" value="$(arg robot)" />
+  <arg name="use_openni2" value="$(arg use_openni2)" />
+
+  <arg name="rgb_camera_info_url" value="$(arg rgb_camera_info_url)" />
+  <arg name="depth_camera_info_url" value="$(arg depth_camera_info_url)" />
+  <arg name="depth_registration" value="$(arg depth_registration)" />
+  <arg name="publish_tf" value="$(arg publish_tf)" />
+</include>
+</launch>

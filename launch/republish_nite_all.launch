@@ -1,0 +1,18 @@
+<launch>
+<arg name="robot"/>
+<include file="$(find kinect)/launch/republish_nite_depth.launch">
+  <arg name="robot" value="$(arg robot)" />
+</include>
+
+<include file="$(find kinect)/launch/republish_nite_rgb.launch">
+  <arg name="robot" value="$(arg robot)" />
+</include>
+
+<include file="$(find kinect)/launch/republish_nite_user.launch">
+  <arg name="robot" value="$(arg robot)" />
+</include>
+
+<include file="$(find kinect)/launch/nite_viewer.launch">
+  <arg name="robot" value="$(arg robot)" />
+</include>
+</launch>

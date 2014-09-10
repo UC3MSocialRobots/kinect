@@ -1,0 +1,9 @@
+<library path="lib/libnite_primitive">
+  <class name = "nite_nodelet_ns/NitePrimitive"
+         type ="nite_nodelet_ns::NitePrimitive"
+         base_class_type = "nodelet::Nodelet" >
+    <description>
+      The Kinect nodelet based on NITE.
+    </description>
+  </class>
+</library>

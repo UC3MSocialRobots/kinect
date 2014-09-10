@@ -1,0 +1,43 @@
+<launch>
+<arg name="robot"/>
+<arg name="rate" default="10"/>
+<arg name="publish_tf" default="true"/>
+
+<!-- a special namespace "foo_camera", like openni.launch -->
+<group ns="$(arg robot)_camera">
+  <arg name="camera" value="$(arg robot)_camera"/>
+  <remap from="/$(arg robot)_camera/skeletons" to="/$(arg robot)/skeletons"/>
+
+  <!-- default TF - $(arg robot)_camera_link => camera frames
+       You are in charge of supplying TF   base_link => $(arg robot)_camera_link  -->
+  <include if="$(arg publish_tf)"
+           file="$(find openni_launch)/launch/kinect_frames.launch">
+    <arg name="camera" value="$(arg camera)" />
+  </include>
+
+  <param name="user/image/compressed/format" value="png"/> <!-- lossless PNG compression -->
+  <node pkg="kinect" type="nite_primitive_standalone"
+        name="nite_primitive_standalone"  output="screen" required="false"
+        args="_rate:=$(arg rate)
+              _kinect_serial_param_name:=/$(arg robot)/kinect_serial_number
+              _camera_frame_id:=$(arg camera)_depth_optical_frame
+              _display_images_flag:=false
+              _publish_images_flag:=true
+              _publish_skeletons_flag:=true
+              _publish_transforms_flag:=true">
+        <rosparam command='load' 
+                  file="$(find kinect)/params/kinect_default_params.yaml"/>
+
+  </node>
+<!--
+        launch-prefix="valgrind"
+-->
+</group>
+
+<!-- publish kinect serial -->
+<group ns="$(arg robot)">
+  <node pkg="kinect" type="publish_kinect_serial.exe"
+        name="publish_kinect_serial"  output="screen"/>
+</group>
+
+</launch>

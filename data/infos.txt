@@ -1,0 +1,19 @@
+**
+A00365A10630110A
+standalone Kinect of the Robotics Lab, UC3M
+
+**
+A00365A82054035A
+Personal Kinect of Arnaud Ramey
+
+**
+A00362A03213039A
+Embedded Kinect of MOPI, Robotics Lab, UC3M
+
+***
+XTIONLAB
+Asus Xtion Pro Live of ALZ, Robotics Lab, UC3M
+
+**
+A00363A04094048A
+Embedded Kinect of Maggie, Robotics Lab, UC3M

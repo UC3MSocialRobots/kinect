@@ -1,0 +1,18 @@
+<launch>
+<arg name="robot"/>
+
+<include file="$(find kinect)/launch/kinect_viewer.launch">
+  <arg name="robot" value="$(arg robot)" />
+</include>
+
+<group ns="$(arg robot)">
+  <!-- display user indices image
+        the _data_size is 16 when the indices were unsigned short,
+        it is 8 when it is a uchar -->
+  <node pkg="kinect" type="index_image_viewer.exe"
+        name="nite_user_viewer"
+        output="screen"
+        args="_input_topic:=user   _image_transport:=raw  _resize_scale:=1  _data_size:=8"
+        />
+</group>
+</launch>

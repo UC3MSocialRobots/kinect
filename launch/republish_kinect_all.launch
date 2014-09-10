@@ -1,0 +1,14 @@
+<launch>
+<arg name="robot"/>
+<include file="$(find kinect)/launch/republish_kinect_depth.launch">
+  <arg name="robot" value="$(arg robot)" />
+</include>
+
+<include file="$(find kinect)/launch/republish_kinect_rgb.launch">
+  <arg name="robot" value="$(arg robot)" />
+</include>
+
+<include file="$(find kinect)/launch/kinect_viewer.launch">
+  <arg name="robot" value="$(arg robot)" />
+</include>
+</launch>

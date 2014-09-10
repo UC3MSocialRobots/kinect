@@ -1,0 +1,34 @@
+<launch>
+<arg name="robot" />
+
+<arg name="depth_registration" default="true" />
+
+<!-- Depth data registration -->
+<param name="/$(arg robot)_camera/depth_registration" value="$(arg depth_registration)" />
+
+<!-- Skip N images for every image published (rgb/depth/depth_registered/ir) Range: 0 to 10 -->
+<param name="/$(arg robot)_camera/data_skip" value="4" />
+
+<!-- Image output mode for the color/grayscale image Possible values are:
+SXGA_15Hz (1): 1280x1024@15Hz, VGA_30Hz (2): 640x480@30Hz,   VGA_25Hz (3): 640x480@25Hz,
+QVGA_25Hz (4): 320x240@25Hz,   QVGA_30Hz (5): 320x240@30Hz,  QVGA_60Hz (6): 320x240@60Hz,
+QQVGA_25Hz (7): 160x120@25Hz,  QQVGA_30Hz (8): 160x120@30Hz, QQVGA_60Hz (9): 160x120@60Hz
+Kinect supports natively just SXGA@15Hz, which actually streams ~10Hz, and VGA@30Hz.
+All other modes at 30Hz are down sampled in the driver
+and modes at 25Hz are not supported by the Kinect.
+-->
+<param name="/$(arg robot)_camera/image_mode" value="2" />
+
+<!-- OpenNI node -->
+<group ns="$(arg robot)_camera">
+  <node pkg="openni2_camera" type="openni2_camera_node"
+        name="openni2_camera_node"  output="screen"/>
+</group>
+
+<!-- publish kinect serial -->
+<group ns="$(arg robot)">
+  <node pkg="kinect" type="publish_kinect_serial.exe"
+        name="publish_kinect_serial"  output="screen"/>
+</group>
+
+</launch>
