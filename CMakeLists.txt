@@ -4,7 +4,7 @@ project(kinect)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS utils roscpp message_generation)
+find_package(catkin REQUIRED COMPONENTS utils roscpp tf message_generation roslib)
 
 #-find_package(catkin REQUIRED COMPONENTS roscpp std_msgs)
 #-find_package(catkin REQUIRED genmsg)
@@ -96,7 +96,7 @@ add_message_files(DIRECTORY msg
 
 catkin_package(
   INCLUDE_DIRS src
-  CATKIN_DEPENDS roscpp message_runtime
+  CATKIN_DEPENDS roscpp message_runtime roslib
   DEPENDS utils
 )
 
@@ -113,6 +113,7 @@ catkin_package(
 include_directories(
   src
   ${catkin_INCLUDE_DIRS}
+  /usr/include/openni /usr/include/nite /usr/include/ni
 )
 
 #### include the macros

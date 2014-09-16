@@ -114,8 +114,8 @@ along with a message enclosing their 3D position.
 #include <XnCodecIDs.h>
 #include <XnCppWrapper.h>
 // AD
-#include "src/kinect_utils/skeleton_utils.h"
-#include "src/kinect_utils/user_image_to_rgb.h"
+#include "kinect_utils/skeleton_utils.h"
+#include "kinect_utils/user_image_to_rgb.h"
 
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -42,6 +42,7 @@
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>roscpp</build_depend>
   <exec_depend>roscpp</exec_depend>
+  <depend>roslib</depend>
   <depend>message_generation</depend>
   <depend>message_runtime</depend>
   <depend>rospy</depend>depend>
@@ -57,6 +58,8 @@
   <depend>rosunit</depend>
   <depend>tf</depend>
   <depend>utils</depend>
+  <depend>nite</depend>
+  <depend>openni</depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>

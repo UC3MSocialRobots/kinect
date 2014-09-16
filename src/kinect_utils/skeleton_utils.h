@@ -28,13 +28,13 @@ ________________________________________________________________________________
 #define SKELETON_UTILS_H
 
 #ifdef NITE_FX
-#include <src/NiteSkeletonLite.h>
+#include <NiteSkeletonLite.h>
 #else  // not NITE_FX
 //#include "kinect/NiteSkeletonList.h"
 #endif // not NITE_FX
 
 #include <opencv2/highgui/highgui.hpp>
-#include <src/kinect_utils/std_utils.h>
+#include <kinect_utils/std_utils.h>
 
 namespace skeleton_utils {
 
