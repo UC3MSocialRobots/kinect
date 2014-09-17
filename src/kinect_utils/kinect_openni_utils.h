@@ -35,6 +35,8 @@ useful functions for working with a Kinect
 #include <rosbag/bag.h>
 #include <rosbag/view.h>
 #include <ros/package.h>
+#include <ros/ros.h>
+
 // OpenCV
 #include <opencv2/core/core.hpp>
 #include "kinect_utils/std_utils.h"
@@ -265,7 +267,7 @@ bool get_kinect_serial_number_and_read_camera_model_files_if_needed
  )
 {
   // electric:  v1.6.5
-#if ROS_VERSION_MINIMUM(1, 7, 0) // fuerte code
+#if ( ROS_VERSION_MINIMUM(1, 7, 0) ) // fuerte code
   if (rgb_camera_model.initialized() && depth_camera_model.initialized())
 #else // electric code
   if (rgb_camera_model.fx() > 0 && depth_camera_model.fx() > 0)

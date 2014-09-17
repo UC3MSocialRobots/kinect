@@ -34,6 +34,7 @@ Some useful functions shared for the project kinect
 #include <boost/filesystem/operations.hpp>
 // ROS
 #include <std_msgs/ColorRGBA.h>
+#include <ros/console.h>
 
 namespace std_utils {
 

@@ -4,7 +4,17 @@ project(kinect)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS utils roscpp tf message_generation roslib)
+
+find_package(orocos_kdl REQUIRED)
+find_library(OROCOS_KDL orocos-kdl)
+set(orocos_kdl_LIBRARIES ${OROCOS_KDL})
+
+
+find_package(catkin REQUIRED COMPONENTS utils cv_bridge roscpp tf
+                                        message_generation roslib
+                                        geometry_msgs rosbag image_geometry
+                                        image_transport)
+
 
 #-find_package(catkin REQUIRED COMPONENTS roscpp std_msgs)
 #-find_package(catkin REQUIRED genmsg)
@@ -45,12 +55,6 @@ find_package(PCL 1.2 REQUIRED)
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
-#   Message2.msg
-# )
-
 add_message_files(DIRECTORY msg
   FILES 
   NiteSkeleton.msg
@@ -73,10 +77,10 @@ add_message_files(DIRECTORY msg
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   dialog_manager_msgs#   monarch_msgs
-# )
+generate_messages(
+  DEPENDENCIES
+  geometry_msgs
+)
 
 ###################################
 ## catkin specific configuration ##
@@ -96,8 +100,9 @@ add_message_files(DIRECTORY msg
 
 catkin_package(
   INCLUDE_DIRS src
-  CATKIN_DEPENDS roscpp message_runtime roslib
-  DEPENDS utils
+  CATKIN_DEPENDS roscpp message_runtime roslib cv_bridge rosbag image_geometry
+                 image_transport
+  DEPENDS utils orocos_kdl
 )
 
 ###########
@@ -114,6 +119,7 @@ include_directories(
   src
   ${catkin_INCLUDE_DIRS}
   /usr/include/openni /usr/include/nite /usr/include/ni
+  ${orocos_kdl_INCLUDE_DIRS}
 )
 
 #### include the macros

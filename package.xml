@@ -60,6 +60,8 @@
   <depend>utils</depend>
   <depend>nite</depend>
   <depend>openni</depend>
+  <depend>geometry_msgs</depend>
+  <depend>orocos_kdl</depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>

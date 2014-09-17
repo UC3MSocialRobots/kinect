@@ -45,7 +45,7 @@ Some tests for the utils with Kinect images.
 */
 void reproject_image_ros(const std::string & rgb_depth_filename_prefix,
                          const std::string & kinect_serial_number) {
-#if AD_USE_ROS && ROS_VERSION_MINIMUM(1, 7, 0) // fuerte code
+#if ( AD_USE_ROS && ROS_VERSION_MINIMUM(1, 7, 0) ) // fuerte code
   int data_step = 3;
   float pt_size = .01 * data_step;
 
