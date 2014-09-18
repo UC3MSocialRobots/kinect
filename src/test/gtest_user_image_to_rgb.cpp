@@ -24,7 +24,7 @@ Some tests for the file user_image_to_rgb
 
  */
 
-#include <src/kinect_utils/user_image_to_rgb.h>
+#include <kinect_utils/user_image_to_rgb.h>
 #include <opencv2/highgui/highgui.hpp>
 #include <ros/package.h>
 #include <gtest/gtest.h>
