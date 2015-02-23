@@ -90,7 +90,9 @@ along with a message enclosing their 3D position.
 #include <vector>
 
 #ifdef NITE_FX
+//#include "vision/dancer/effect_collection.h"
 #include "vision/skills/dancer/effect_collection.h"
+#include <ros/package.h>
 #else // NITE_FX
 // ROS
 #include <ros/ros.h>
@@ -164,7 +166,8 @@ public:
 
     // get params
 #ifdef NITE_FX
-    std::string configFilename = "openni_tracker.xml";
+    // std::string configFilename = "openni_tracker.xml";
+    std::string configFilename = ros::package::getPath("kinect") + "/launch/openni_tracker.xml";
     rate = 30;
     display_images_flag = false;
     publish_images_flag = false;
@@ -191,7 +194,7 @@ public:
     }
 
     // Check if pubhished_skeketon_joints is ok
-    ROS_ASSERT(_published_joints.getType() == XmlRpc::XmlRpcValue::TypeArray);
+    //ROS_ASSERT(_published_joints.getType() == XmlRpc::XmlRpcValue::TypeArray);
 
 #endif // not NITE_FX
 
@@ -585,13 +588,13 @@ public:
     out.orientation_confidence = joint_orientation.fConfidence;
 
 #ifdef NITE_FX // skip computing
-    transform.translation.x = -x;
-    transform.translation.y = -y;
-    transform.translation.z = z;
-    transform.rotation.x = 0;
-    transform.rotation.y = 0;
-    transform.rotation.z = 0;
-    transform.rotation.w = 1;
+    out.transform.translation.x = -x;
+    out.transform.translation.y = -y;
+    out.transform.translation.z = z;
+    out.transform.rotation.x = 0;
+    out.transform.rotation.y = 0;
+    out.transform.rotation.z = 0;
+    out.transform.rotation.w = 1;
 #else // not NITE_FX
     out.transform.setOrigin(tf::Vector3(x, y, z));
     out.transform.setRotation(tf::Quaternion(0, 0, 0, 1));
@@ -638,11 +641,13 @@ public:
       if (!g_UserGenerator.GetSkeletonCap().IsTracking(curr_user_id))
         continue;
 
+      if (!_published_joints.getType() == XmlRpc::XmlRpcValue::TypeArray)
+        continue;
+
       for (int i = 0; i < _published_joints.size(); i++){
           // Get joint name and translate them to ids
           j_name = static_cast<std::string>(_published_joints[i]);
           j_id = static_cast<JointId>(joint_id_converter.reverse_search(j_name));
-
           add_userjoint_data(curr_user_id, j_id);
       }
 

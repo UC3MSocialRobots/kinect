@@ -7,7 +7,7 @@ add_executable(nite_primitive_standalone.exe
                )
 
 target_link_libraries(nite_primitive_standalone.exe 
-                      OpenNI orocos-kdl #XnVNite
+                      OpenNI ${orocos_kdl_LIBRARIES} #XnVNite
                       ${catkin_LIBRARIES}
                       )
 
@@ -21,7 +21,7 @@ add_library(nite_primitive
             NiteSkeletonLite.h)
             
 target_link_libraries(nite_primitive 
-                      OpenNI #XnVNite
+                      OpenNI ${orocos_kdl_LIBRARIES} #XnVNite
                       ${catkin_LIBRARIES}
                       )
 

@@ -17,7 +17,7 @@
 
   <param name="user/image/compressed/format" value="png"/> <!-- lossless PNG compression -->
   <node pkg="kinect" type="nite_primitive_standalone"
-        name="nite_primitive_standalone"  output="screen" required="false"
+        name="nite_primitive_standalone"  output="screen" respawn="true"
         args="_rate:=$(arg rate)
               _kinect_serial_param_name:=/$(arg robot)/kinect_serial_number
               _camera_frame_id:=$(arg camera)_depth_optical_frame
@@ -25,7 +25,7 @@
               _publish_images_flag:=true
               _publish_skeletons_flag:=true
               _publish_transforms_flag:=true">
-        <rosparam command='load' 
+        <rosparam command='load'
                   file="$(find kinect)/params/kinect_default_params.yaml"/>
 
   </node>

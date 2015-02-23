@@ -1,0 +1,22 @@
+header: 
+  seq: 0
+  stamp: 
+    secs: 1361383155
+    nsecs: 390827984
+  frame_id: /mopi_camera_rgb_optical_frame
+height: 240
+width: 320
+distortion_model: plumb_bob
+D: [0.0, 0.0, 0.0, 0.0, 0.0]
+K: [262.5, 0.0, 159.5, 0.0, 262.5, 119.5, 0.0, 0.0, 1.0]
+R: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
+P: [262.5, 0.0, 159.5, 0.0, 0.0, 262.5, 119.5, 0.0, 0.0, 0.0, 1.0, 0.0]
+binning_x: 0
+binning_y: 0
+roi: 
+  x_offset: 0
+  y_offset: 0
+  height: 0
+  width: 0
+  do_rectify: False
+---

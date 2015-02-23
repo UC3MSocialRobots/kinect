@@ -13,9 +13,8 @@ set(orocos_kdl_LIBRARIES ${OROCOS_KDL})
 find_package(catkin REQUIRED COMPONENTS utils cv_bridge roscpp tf
                                         message_generation roslib
                                         geometry_msgs rosbag image_geometry
-                                        image_transport)
-
-
+                                        image_transport nodelet)
+                                        
 #-find_package(catkin REQUIRED COMPONENTS roscpp std_msgs)
 #-find_package(catkin REQUIRED genmsg)
 
@@ -100,8 +99,8 @@ generate_messages(
 
 catkin_package(
   INCLUDE_DIRS src
-  CATKIN_DEPENDS roscpp message_runtime roslib cv_bridge rosbag image_geometry
-                 image_transport
+  CATKIN_DEPENDS roscpp message_runtime roslib cv_bridge tf rosbag image_geometry
+                 image_transport nodelet
   DEPENDS utils orocos_kdl
 )
 
