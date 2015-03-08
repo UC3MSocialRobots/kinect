@@ -24,16 +24,11 @@ Some tests for the utils with Kinect images.
  */
 
 #include "kinect_openni_utils.h"
+#include "time/timer.h"
 // opencv
 #include <opencv2/highgui/highgui.hpp>
 
-#if AD_USE_ROS
 #include <ros/ros.h>
-#if ROS_VERSION_MINIMUM(1, 7, 0) // fuerte code
-#include <src/ros_utils/marker_utils.h>
-#include <src/ros_utils/pt_utils.h>
-#endif // fuerte
-#endif // AD_USE_ROS
 
 /*!
   A simple example for transforming the RGB stream of a camera
@@ -43,9 +38,13 @@ Some tests for the utils with Kinect images.
  \param calibration_filename
     the file containing the intrinsic and extrinsic parameters of the camera
 */
+//#if ( ROS_VERSION_MINIMUM(1, 7, 0) ) // fuerte code
+#if 0
+#include <ros_utils/marker_utils.h>
+#include <ros_utils/pt_utils.h>
+#include <cv_conversion_float_uchar.h>
 void reproject_image_ros(const std::string & rgb_depth_filename_prefix,
                          const std::string & kinect_serial_number) {
-#if ( AD_USE_ROS && ROS_VERSION_MINIMUM(1, 7, 0) ) // fuerte code
   int data_step = 3;
   float pt_size = .01 * data_step;
 
@@ -106,10 +105,8 @@ void reproject_image_ros(const std::string & rgb_depth_filename_prefix,
     if ((int) c == 27)
       break;
   }
-#else // AD_USE_ROS
-  printf("AD_USE_ROS flag not activated, doing nothing\n");
-#endif // AD_USE_ROS
 } // end reproject_image_ros();
+#endif
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -217,25 +214,25 @@ int main(int argc, char** argv) {
   int choice = 10;
   std::cin >> choice;
   idx = 1;
+//  if (choice == idx++)
+//    reproject_image_ros(IMG_DIR + "depth/inside1", KINECT_SERIAL_LAB());
+//  else if (choice == idx++)
+//    reproject_image_ros(IMG_DIR + "depth/juggling1", KINECT_SERIAL_LAB());
+//  else if (choice == idx++)
+//    reproject_image_ros(IMG_DIR + "depth/juggling2", KINECT_SERIAL_LAB());
+//  else if (choice == idx++)
+//    reproject_image_ros(IMG_DIR + "depth/juggling3", KINECT_SERIAL_LAB());
+//  else if (choice == idx++)
+//    reproject_image_ros(IMG_DIR + "depth/alberto1", KINECT_SERIAL_LAB());
+//  else if (choice == idx++)
+//    reproject_image_ros(IMG_DIR + "depth/alberto2", KINECT_SERIAL_LAB());
+//  else if (choice == idx++)
+//    reproject_image_ros(IMG_DIR + "depth/alvaro1", KINECT_SERIAL_LAB());
+//  else if (choice == idx++)
+//    reproject_image_ros(IMG_DIR + "depth/alvaro2", KINECT_SERIAL_LAB());
+
+
   if (choice == idx++)
-    reproject_image_ros(IMG_DIR + "depth/inside1", KINECT_SERIAL_LAB());
-  else if (choice == idx++)
-    reproject_image_ros(IMG_DIR + "depth/juggling1", KINECT_SERIAL_LAB());
-  else if (choice == idx++)
-    reproject_image_ros(IMG_DIR + "depth/juggling2", KINECT_SERIAL_LAB());
-  else if (choice == idx++)
-    reproject_image_ros(IMG_DIR + "depth/juggling3", KINECT_SERIAL_LAB());
-  else if (choice == idx++)
-    reproject_image_ros(IMG_DIR + "depth/alberto1", KINECT_SERIAL_LAB());
-  else if (choice == idx++)
-    reproject_image_ros(IMG_DIR + "depth/alberto2", KINECT_SERIAL_LAB());
-  else if (choice == idx++)
-    reproject_image_ros(IMG_DIR + "depth/alvaro1", KINECT_SERIAL_LAB());
-  else if (choice == idx++)
-    reproject_image_ros(IMG_DIR + "depth/alvaro2", KINECT_SERIAL_LAB());
-
-
-  else if (choice == idx++)
     test_reproject(DEFAULT_KINECT_SERIAL());
   return 0;
 }

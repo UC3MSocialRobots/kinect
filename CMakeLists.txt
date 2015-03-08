@@ -137,11 +137,6 @@ include_directories(
 ADD_SUBDIRECTORY(src)
 #ADD_SUBDIRECTORY(test)
 
-SET(AD_USE_ROS 1)
-
-#SET(AD_USE_ROS 1) # needed for CMakeMacros to use ROS building routines
-#SET(AD_USE_OPENCV 1 CACHE BOOL "")
-
 ## Declare a cpp library
 # add_library(monarch_multimodal_fusion
 #   src/${PROJECT_NAME}/monarch_multimodal_fusion.cpp
