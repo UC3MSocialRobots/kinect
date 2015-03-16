@@ -8,7 +8,7 @@
         args="image:=/$(arg robot)_camera/rgb/image _image_transport:=raw"/>
 -->
 
-  <node pkg="compressed_rounded_image_transport" type="depth_to_rgb_viewer.exe"
+  <node pkg="vision_utils" type="depth_to_rgb_viewer.exe"
         name="kinect_depth_viewer"
         output="screen"
         args="_input_topic:=depth _image_transport:=raw"
