@@ -9,6 +9,12 @@ find_package(catkin REQUIRED COMPONENTS utils
 
 find_package(PCL 1.2 REQUIRED)
 find_package(orocos_kdl REQUIRED)
+
+## Uncomment this if the package has a setup.py. This macro ensures
+## modules and global scripts declared therein get installed
+## See http://ros.org/doc/api/catkin/html/user_guide/setup_dot_py.html
+catkin_python_setup()
+
 find_library(OROCOS_KDL orocos-kdl)
 set(orocos_kdl_LIBRARIES ${OROCOS_KDL})
 ### 4 - Message/Service/Action Generators (add_message_files(), add_service_files(), add_action_files())
