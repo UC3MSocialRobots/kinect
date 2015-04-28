@@ -1,0 +1,16 @@
+<launch>
+<!-- publishes the following topics:
+  * /$(arg robot)/rgb
+  * /$(arg robot)/depth
+  * /$(arg robot)/user
+-->
+<arg name="robot"/>
+
+<remap from="/$(arg robot)/camera/rgb/image" to="/$(arg robot)/rgb"/>
+<remap from="/$(arg robot)/camera/depth/image" to="/$(arg robot)/depth"/>
+<remap from="/$(arg robot)/camera/user/image" to="/$(arg robot)/user"/>
+
+<include file="$(find kinect)/launch/nite_node_remote.launch">
+  <arg name="robot" value="$(arg robot)" />
+</include>
+</launch>

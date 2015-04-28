@@ -2,14 +2,7 @@
 <arg name="robot"/>
 <group ns="$(arg robot)">
   <node pkg="image_transport" type="republish" name="decompress_rgb"
-        output="screen"  args="compressed        in:=/$(arg robot)_camera/rgb/image_rect_color
+        output="screen"  args="compressed         in:=rgb_remote
                                raw               out:=rgb"/>
-
-  <!--
-  Compressed version:
-  rostopic bw /camera/rgb/image_color/compressed
-  Decompressed version:
-  rostopic bw /rgb
-  -->
 </group>
 </launch>
