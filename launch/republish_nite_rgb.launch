@@ -2,7 +2,7 @@
 <arg name="robot"/>
 <group ns="$(arg robot)">
   <node pkg="image_transport" type="republish" name="decompress_rgb"
-        output="screen"  args="compressed        in:=/$(arg robot)/camera/rgb/image
+        output="screen"  args="compressed        in:=/$(arg robot)_camera/rgb/image
                                raw               out:=rgb"/>
 
   <!--

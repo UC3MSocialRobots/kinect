@@ -11,7 +11,7 @@
 
   <!-- the compulsoory arg given to the kinect_aux_tf_broadcaster.
        It should at least contain "_frame_id:=XXX  _child_frame_id:=XXX" -->
-  <node pkg="kinect" type="kinect_aux_tf_broadcaster" name="kinect_aux_tf_broadcaster"
+  <node pkg="kinect" type="kinect_aux_tf_broadcaster.exe" name="kinect_aux_tf_broadcaster"
         output="screen"
         args="$(arg kinect_aux_tf_broadcaster_args)"/>
 </group>

@@ -2,9 +2,9 @@
 <arg name="robot"/>
 <group ns="$(arg robot)">
 <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan"
-      name="kinect2laserscan" args="_output_frame_id:=$(arg robot)/camera_depth_frame">
+      name="kinect2laserscan" args="_output_frame_id:=$(arg robot)_camera_depth_frame">
   <remap from="/$(arg robot)/image" to="/$(arg robot)/depth"/>
-  <remap from="/$(arg robot)/camera_info" to="/$(arg robot)/camera/depth_registered/camera_info"/>
+  <remap from="/$(arg robot)_camera_info" to="/$(arg robot)_camera/depth_registered/camera_info"/>
 </node>
 </group>
 </launch>

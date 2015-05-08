@@ -6,14 +6,14 @@
 <arg name="robot" />
 
 <!-- remappings -->
-<remap from="/$(arg robot)/camera/rgb/image" to="/$(arg robot)/rgb_remote"/>
-<remap from="/$(arg robot)/camera/depth/image" to="/$(arg robot)/depth_remote"/>
+<remap from="/$(arg robot)_camera/rgb/image" to="/$(arg robot)/rgb_remote"/>
+<remap from="/$(arg robot)_camera/depth/image" to="/$(arg robot)/depth_remote"/>
 
 <!-- Depth data registration -->
-<param name="/$(arg robot)/camera/depth_registration" value="true" />
+<param name="/$(arg robot)_camera/depth_registration" value="true" />
 
 <!-- Skip N images for every image published (rgb/depth/depth_registered/ir) Range: 0 to 10 -->
-<param name="/$(arg robot)/camera/data_skip" value="4" />
+<param name="/$(arg robot)_camera/data_skip" value="4" />
 
 <!-- Image output mode for the color/grayscale image Possible values are:
 SXGA_15Hz (1): 1280x1024@15Hz, VGA_30Hz (2): 640x480@30Hz,   VGA_25Hz (3): 640x480@25Hz,
@@ -23,10 +23,10 @@ Kinect supports natively just SXGA@15Hz, which actually streams ~10Hz, and VGA@3
 All other modes at 30Hz are down sampled in the driver
 and modes at 25Hz are not supported by the Kinect.
 -->
-<param name="/$(arg robot)/camera/image_mode" value="2" />
+<param name="/$(arg robot)_camera/image_mode" value="2" />
 
 <!-- OpenNI node -->
-<group ns="$(arg robot)/camera">
+<group ns="$(arg robot)_camera">
   <node pkg="openni2_camera" type="openni2_camera_node"
         name="openni2_camera_node"  output="screen"/>
 </group>

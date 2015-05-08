@@ -4,11 +4,11 @@
 <arg name="publish_tf" default="true"/>
 
 <!-- a special namespace "foo_camera", like openni.launch -->
-<group ns="$(arg robot)/camera">
-  <arg name="camera" value="$(arg robot)/camera"/>
-  <remap from="/$(arg robot)/camera/skeletons" to="/$(arg robot)/skeletons"/>
+<group ns="$(arg robot)_camera">
+  <arg name="camera" value="$(arg robot)_camera"/>
+  <remap from="/$(arg robot)_camera/skeletons" to="/$(arg robot)/skeletons"/>
 
-  <!-- default TF - $(arg robot)/camera_link => camera frames
+  <!-- default TF - $(arg robot)_camera_link => camera frames
        You are in charge of supplying TF   base_link => $(arg robot)_camera_link  -->
   <include if="$(arg publish_tf)"
            file="$(find openni_launch)/launch/kinect_frames.launch">

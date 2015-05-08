@@ -5,7 +5,7 @@
         name="kinect_rgb_viewer"
         args="image:=rgb _image_transport:=raw"/>
 <!--
-        args="image:=/$(arg robot)/camera/rgb/image _image_transport:=raw"/>
+        args="image:=/$(arg robot)_camera/rgb/image _image_transport:=raw"/>
 -->
 
   <node pkg="vision_utils" type="depth_to_rgb_viewer.exe"
@@ -14,7 +14,7 @@
         args="_input_topic:=depth _image_transport:=raw"
         />
 <!--
-        args="_input_topic:=/$(arg robot)/camera/depth/image _image_transport:=raw"/>
+        args="_input_topic:=/$(arg robot)_camera/depth/image _image_transport:=raw"/>
 -->
 </group>
 </launch>
