@@ -5,6 +5,7 @@
   * /$(arg robot)/user
 -->
 <arg name="robot"/>
+<arg name="publish_tf" default="true" />
 
 <remap from="/$(arg robot)_camera/rgb/image" to="/$(arg robot)/rgb"/>
 <remap from="/$(arg robot)_camera/depth/image" to="/$(arg robot)/depth"/>
@@ -12,5 +13,6 @@
 
 <include file="$(find kinect)/launch/nite_node_remote.launch">
   <arg name="robot" value="$(arg robot)" />
+  <arg name="publish_tf" default="$(arg publish_tf)" />
 </include>
 </launch>
