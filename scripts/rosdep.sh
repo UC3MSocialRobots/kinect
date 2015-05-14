@@ -1,9 +1,7 @@
 #!/bin/sh
-# External, ROS and system package dependencies
+#External, ROS and system package dependencies
 
-PACKAGES="ros-`rosversion -d`-openni-camera
-          ros-`rosversion -d`-openni-launch
-          ros-`rosversion -d`-orocos-kinematics-dynamics"
+PACKAGES="ros-`rosversion -d`-openni-camera ros-`rosversion -d`-openni-launch ros-`rosversion -d`-orocos-kinematics-dynamics"
           #ros-indigo-openni-tracker
           #ros-indigo-kdl
 
