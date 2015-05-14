@@ -16,7 +16,7 @@
   </include>
 
   <param name="user/image/compressed/format" value="png"/> <!-- lossless PNG compression -->
-  <node pkg="kinect" type="nite_primitive_standalone"
+  <node pkg="kinect" type="nite_primitive_standalone.exe"
         name="nite_primitive_standalone"  output="screen" respawn="true"
         args="_rate:=$(arg rate)
               _kinect_serial_param_name:=/$(arg robot)/kinect_serial_number

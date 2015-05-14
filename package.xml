@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!-- doc: http://wiki.ros.org/catkin/package.xml -->
-<package>
+<package> 
   <name>kinect</name>
   <version>0.0.0</version>
   <description>The Kinect nodelet based on NITE.</description>
@@ -33,6 +33,7 @@
   <run_depend>roslib</run_depend>
   <run_depend>cv_bridge</run_depend>
   <run_depend>tf</run_depend>
+  <run_depend>orocos_kdl</run_depend>
   <run_depend>geometry_msgs</run_depend>
   <run_depend>rosbag</run_depend>
   <run_depend>image_geometry</run_depend>
