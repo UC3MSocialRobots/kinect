@@ -11,7 +11,7 @@
   <!-- default TF - $(arg robot)_camera_link => camera frames
        You are in charge of supplying TF   base_link => $(arg robot)_camera_link  -->
   <include if="$(arg publish_tf)"
-           file="$(find openni_launch)/launch/kinect_frames.launch">
+           file="$(find rgbd_launch)/launch/kinect_frames.launch">
     <arg name="camera" value="$(arg camera)" />
   </include>
 
