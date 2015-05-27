@@ -1,13 +1,6 @@
 #!/bin/sh
 #External, ROS and system package dependencies
 
-# ROS packages
-PACKAGES="          ros-`rosversion -d`-openni-camera"
-PACKAGES="$PACKAGES ros-`rosversion -d`-openni-launch"
-PACKAGES="$PACKAGES ros-`rosversion -d`-orocos-kinematics-dynamics"
-PACKAGES="$PACKAGES ros-`rosversion -d`-freenect-launch"
-sudo apt-get install $PACKAGES
-
 # OpenNI 1.5
 cd /tmp
 wget http://roboticslab.uc3m.es/mediawiki/images/c/ce/OpenNI-Bin-Dev-Linux-x86-v1.5.4.0.zip
