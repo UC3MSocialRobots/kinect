@@ -9,8 +9,8 @@ obtained by republishing the data published by kinect_node_remote.launch:
 <arg name="robot"/>
 <arg name="publish_tf" default="true" />
 <!-- the three different low-level drivers - please choose one and only one -->
-<arg name="use_freenect" default="true"/>
-<arg name="use_openni1" default="false"/>
+<arg name="use_freenect" default="false"/>
+<arg name="use_openni1" default="true"/>
 <arg name="use_openni2" default="false"/>
 <!-- pass calibration files if needed -->
 <arg name="rgb_camera_info_url"   default="" />
