@@ -44,7 +44,7 @@ QQVGA_25Hz (7): 160x120@25Hz,  QQVGA_30Hz (8): 160x120@30Hz, QQVGA_60Hz (9): 160
   <arg name="rgb_camera_info_url" value="$(arg rgb_camera_info_url)" />
   <arg name="depth_camera_info_url" value="$(arg depth_camera_info_url)" />
   <arg name="publish_tf" value="$(arg publish_tf)" />
-  <!--<arg name="tf_prefix" value="$(arg robot)" />-->
+  <arg name="tf_prefix" value="$(arg robot)" />
   <arg name="depth_registration" value="true" />
   <!-- for rgbd_launch/processing.launch.xml -->
   <arg name="rgb_processing"                  value="true" />
