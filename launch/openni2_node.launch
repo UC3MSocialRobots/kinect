@@ -25,7 +25,10 @@ and modes at 25Hz are not supported by the Kinect.
 -->
 <param name="/$(arg robot)_camera/image_mode" value="2" />
 
-<!-- OpenNI node -->
+<!-- OpenNI node 
+Warning: TF and rectification missing!!
+We should use openni2_launch/openni2.launch
+ -->
 <group ns="$(arg robot)_camera">
   <node pkg="openni2_camera" type="openni2_camera_node"
         name="openni2_camera_node"  output="screen"/>
