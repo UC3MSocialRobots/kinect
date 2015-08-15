@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!-- doc: http://wiki.ros.org/catkin/package.xml -->
-<package>
+<package format="2">
   <name>kinect</name>
   <version>0.0.0</version>
   <description>
@@ -11,49 +11,30 @@
   <license>LGPLv3</license>
   <!-- dependencies -->
   <buildtool_depend>catkin</buildtool_depend>
-  
-  <build_depend>openni-camera</build_depend>
-  <build_depend>openni-launch</build_depend>
-  <build_depend>orocos-kinematics-dynamics</build_depend>
-  <build_depend>freenect-launch</build_depend>
-  <build_depend>cv_bridge</build_depend>
-  <build_depend>geometry_msgs</build_depend>
-  <build_depend>image_geometry</build_depend>
-  <build_depend>image_transport</build_depend>
-  <build_depend>message_generation</build_depend>
-  <build_depend>message_runtime</build_depend>
-  <build_depend>nodelet</build_depend>
-  <build_depend>orocos_kdl</build_depend>
-  <build_depend>pcl_ros</build_depend>
-  <build_depend>rosbag</build_depend>
-  <build_depend>roscpp</build_depend>
-  <build_depend>roslib</build_depend>
-  <build_depend>rospy</build_depend>
-  <build_depend>rosunit</build_depend>
-  <build_depend>sensor_msgs</build_depend>
-  <build_depend>tf</build_depend>
-  
-  <run_depend>message_generation</run_depend>
-  <run_depend>message_runtime</run_depend>
-  <run_depend>roscpp</run_depend>
-  <run_depend>roslib</run_depend>
-  <run_depend>openni-camera</run_depend>
-  <run_depend>openni-launch</run_depend>
-  <run_depend>orocos-kinematics-dynamics</run_depend>
-  <run_depend>freenect-launch</run_depend>
-  <run_depend>cv_bridge</run_depend>
-  <run_depend>tf</run_depend>
-  <run_depend>orocos_kdl</run_depend>
-  <run_depend>geometry_msgs</run_depend>
-  <run_depend>rosbag</run_depend>
-  <run_depend>image_geometry</run_depend>
-  <run_depend>image_transport</run_depend>
-  <run_depend>nodelet</run_depend>
-  
-  
+
+  <depend>cv_bridge</depend>
+  <depend>freenect_launch</depend>
+  <depend>geometry_msgs</depend>
+  <depend>image_geometry</depend>
+  <depend>image_transport</depend>
+  <depend>message_generation</depend>
+  <depend>message_runtime</depend>
+  <depend>nodelet</depend>
+  <depend>openni_camera</depend>
+  <depend>openni_launch</depend>
+  <depend>orocos_kdl</depend>
+  <depend>orocos_kinematics_dynamics</depend>
+  <depend>pcl_ros</depend>
+  <depend>rosbag</depend>
+  <depend>roscpp</depend>
+  <depend>roslib</depend>
+  <depend>rospy</depend>
+  <depend>rosunit</depend>
+  <depend>sensor_msgs</depend>
+  <depend>tf</depend>
+
   <!-- AD -->
-  <build_depend>utils</build_depend>
-  <run_depend>utils</run_depend>
+  <depend>utils</depend>
 
   <export>
     <rosdoc config="rosdoc.yaml" /> <!-- http://wiki.ros.org/rosdoc_lite -->
