@@ -1,9 +1,9 @@
 ### nite_primitive_standalone
 add_executable(nite_primitive_standalone.exe 
                nite_primitive_standalone.cpp
-               nite_primitive.h
-               kinect_utils/nite_utils.h
-               kinect_utils/kinect_openni_utils.h
+               
+               
+               
                )
 
 target_link_libraries(nite_primitive_standalone.exe 
@@ -16,9 +16,9 @@ target_link_libraries(nite_primitive_standalone.exe
 
 ### nite_primitive
 add_library(nite_primitive 
-            nite_primitive.cpp nite_primitive.h
+            nite_primitive.cpp 
             # fake dependencies of nite_fx (making it visible in QtCreator)
-            NiteSkeletonLite.h)
+            )
             
 target_link_libraries(nite_primitive 
                       OpenNI ${orocos_kdl_LIBRARIES} #XnVNite
@@ -41,7 +41,7 @@ target_link_libraries(publish_kinect_serial.exe ${catkin_LIBRARIES})
 
 ### nite_fx: as a library, for compiling it (and making it visible in QtCreator),
 ###, but not complaining about linking problems with ROS
-#add_library(nite_fx             nite_fx.cpp NiteSkeletonLite.h)
+#add_library(nite_fx             nite_fx.cpp )
 #target_link_libraries(nite_fx   OpenNI XnVNite )
 
 ADD_SUBDIRECTORY(kinect_utils)

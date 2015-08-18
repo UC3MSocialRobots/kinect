@@ -31,14 +31,14 @@ generate_messages(
 )
 ### 6 - Specify package build info export (catkin_package())
 catkin_package(
-  INCLUDE_DIRS src
+  INCLUDE_DIRS include
   CATKIN_DEPENDS roscpp message_runtime roslib cv_bridge tf rosbag image_geometry
                  image_transport nodelet
   DEPENDS utils orocos_kdl
 )
 ### 7 - Libraries/Executables to build (add_library()/add_executable()/target_link_libraries())
 include_directories(
-  src
+  include
   ${catkin_INCLUDE_DIRS}
   /usr/include/openni /usr/include/nite /usr/include/ni
   ${orocos_kdl_INCLUDE_DIRS}

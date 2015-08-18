@@ -108,7 +108,7 @@ along with a message enclosing their 3D position.
 #include <image_transport/image_transport.h>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
-#include "kinect_utils/kinect_openni_utils.h"
+#include "kinect/kinect_openni_utils.h"
 #endif // NITE_FX not defined
 
 // NITE
@@ -116,8 +116,8 @@ along with a message enclosing their 3D position.
 #include <XnCodecIDs.h>
 #include <XnCppWrapper.h>
 // AD
-#include "kinect_utils/skeleton_utils.h"
-#include "kinect_utils/user_image_to_rgb.h"
+#include "kinect/skeleton_utils.h"
+#include "kinect/user_image_to_rgb.h"
 
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -23,7 +23,7 @@ ________________________________________________________________________________
 Some tests for the utils with Kinect images.
  */
 
-#include "kinect_openni_utils.h"
+#include "kinect/kinect_openni_utils.h"
 #include "time/timer.h"
 // opencv
 #include <opencv2/highgui/highgui.hpp>

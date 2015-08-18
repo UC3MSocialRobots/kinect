@@ -44,7 +44,7 @@ lsusb -v -d 045e:02ae | grep -e "iSerial" | awk '{print $3}'
  */
 
 #include <ros/ros.h>
-#include <kinect_utils/std_utils.h>
+#include "kinect/std_utils.h"
 
 static const char* KINECT_lsusb_FILE = "/tmp/kinect_lsusb.tmp";
 

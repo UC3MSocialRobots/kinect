@@ -1,4 +1,4 @@
-#include "nite_primitive.h"
+#include "kinect/nite_primitive.h"
 
 int main(int argc, char** argv) {
   ros::init(argc, argv, "nite_primitive_standalone");

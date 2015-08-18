@@ -25,7 +25,7 @@ ________________________________________________________________________________
  */
 
 #define NITE_FX
-#include "nite_primitive.h"
+#include "kinect/nite_primitive.h"
 
 int main(int argc, char** argv) {
   NitePrimitiveClass primitive;

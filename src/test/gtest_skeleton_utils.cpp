@@ -23,7 +23,7 @@ ________________________________________________________________________________
 Some tests of the namespace \a skeleton_utils
  */
 
-#include <kinect_utils/skeleton_utils.h>
+#include "kinect/skeleton_utils.h"
 #include <gtest/gtest.h>
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -20,7 +20,7 @@ You should have received a copy of the GNU Lesser General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ________________________________________________________________________________
  */
-#include "nite_primitive.h"
+#include "kinect/nite_primitive.h"
 
 //! \namespace nite_nodelet_ns namespace for \a NitePrimitive class
 namespace nite_nodelet_ns {

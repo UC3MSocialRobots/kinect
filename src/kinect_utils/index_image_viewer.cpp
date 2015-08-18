@@ -58,7 +58,7 @@ in meaningful colors.
 #include <cv_bridge/cv_bridge.h>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
-#include "user_image_to_rgb.h"
+#include "kinect/user_image_to_rgb.h"
 
 cv_bridge::CvImageConstPtr bridge_img;
 cv::Mat3b _out_img;
