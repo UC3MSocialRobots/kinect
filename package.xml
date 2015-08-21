@@ -11,7 +11,6 @@
   <license>LGPLv3</license>
   <!-- dependencies -->
   <buildtool_depend>catkin</buildtool_depend>
-
   <depend>cv_bridge</depend>
   <depend>freenect_launch</depend>
   <depend>geometry_msgs</depend>
@@ -34,7 +33,7 @@
   <depend>tf</depend>
 
   <!-- AD -->
-  <depend>utils</depend>
+  <!-- no dependency -->
 
   <export>
     <rosdoc config="rosdoc.yaml" /> <!-- http://wiki.ros.org/rosdoc_lite -->

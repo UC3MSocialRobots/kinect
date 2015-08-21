@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 2.8.3)
 ### 2- Package Name
 project(kinect)
 ### 3 - Find other CMake/Catkin packages needed for build
-find_package(catkin REQUIRED COMPONENTS utils
+find_package(catkin REQUIRED COMPONENTS
   cv_bridge roscpp tf message_generation roslib geometry_msgs rosbag
   image_geometry image_transport nodelet)
 
@@ -34,7 +34,7 @@ catkin_package(
   INCLUDE_DIRS include
   CATKIN_DEPENDS roscpp message_runtime roslib cv_bridge tf rosbag image_geometry
                  image_transport nodelet
-  DEPENDS utils orocos_kdl
+  DEPENDS orocos_kdl
 )
 ### 7 - Libraries/Executables to build (add_library()/add_executable()/target_link_libraries())
 include_directories(

@@ -1,12 +1,12 @@
 ### nite_primitive_standalone
-add_executable(nite_primitive_standalone.exe 
+add_executable(nite_primitive_standalone.exe
                nite_primitive_standalone.cpp
-               
-               
-               
+
+
+
                )
 
-target_link_libraries(nite_primitive_standalone.exe 
+target_link_libraries(nite_primitive_standalone.exe
                       OpenNI ${orocos_kdl_LIBRARIES} #XnVNite
                       ${catkin_LIBRARIES}
                       )
@@ -15,12 +15,12 @@ target_link_libraries(nite_primitive_standalone.exe
 #~ target_link_libraries(nite_primitive_standalone effect_collection)
 
 ### nite_primitive
-add_library(nite_primitive 
-            nite_primitive.cpp 
+add_library(nite_primitive
+            nite_primitive.cpp
             # fake dependencies of nite_fx (making it visible in QtCreator)
             )
-            
-target_link_libraries(nite_primitive 
+
+target_link_libraries(nite_primitive
                       OpenNI ${orocos_kdl_LIBRARIES} #XnVNite
                       ${catkin_LIBRARIES}
                       )
@@ -46,4 +46,5 @@ target_link_libraries(publish_kinect_serial.exe ${catkin_LIBRARIES})
 
 ADD_SUBDIRECTORY(kinect_utils)
 ADD_SUBDIRECTORY(kinect_aux)
+ADD_SUBDIRECTORY(nite)
 ADD_SUBDIRECTORY(test)

@@ -43,7 +43,7 @@ ________________________________________________________________________________
 #define NITESKELETONLITE_H
 
 #include <vector>
-#include "geom/foo_point.h"
+#include "vision_utils/utils/foo_point.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 
