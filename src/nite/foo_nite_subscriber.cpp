@@ -58,7 +58,7 @@ public:
     cv::imshow("user_illus", user_illus);
         char c = cv::waitKey(10);
     if (c == 's') {
-      //std::string stamp = StringUtils::timestamp();
+      //std::string stamp = string_utils::timestamp();
       //image_utils::write_rgb_depth_user_to_image_file
       //    (stamp, &color, &depth, &user, &user_illus);
     }
