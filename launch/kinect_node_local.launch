@@ -8,6 +8,8 @@ obtained by republishing the data published by kinect_node_remote.launch:
 -->
 <arg name="robot"/>
 <arg name="publish_tf" default="true" />
+<!-- Skip N images for every image published (rgb/depth/depth_registered/ir) Range: 0 to 10 -->
+<arg name="data_skip" default="4" />
 <!-- the three different low-level drivers - please choose one and only one -->
 <arg name="use_freenect" default="false"/>
 <arg name="use_openni1" default="true"/>
@@ -30,5 +32,6 @@ obtained by republishing the data published by kinect_node_remote.launch:
   <arg name="rgb_camera_info_url" value="$(arg rgb_camera_info_url)" />
   <arg name="depth_camera_info_url" value="$(arg depth_camera_info_url)" />
   <arg name="publish_tf" value="$(arg publish_tf)" />
+  <arg name="data_skip" value="$(arg data_skip)" />
 </include>
 </launch>

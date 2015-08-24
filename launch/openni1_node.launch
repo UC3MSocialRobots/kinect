@@ -13,6 +13,8 @@ For specific parameters:
 -->
 <arg name="robot" />
 <arg name="publish_tf" default="true" />
+<!-- Skip N images for every image published (rgb/depth/depth_registered/ir) Range: 0 to 10 -->
+<arg name="data_skip" default="4" />
 <!-- pass calibration files if needed -->
 <arg name="rgb_camera_info_url"   default="" />
 <arg name="depth_camera_info_url" default="" />
@@ -21,7 +23,7 @@ For specific parameters:
 <remap from="/$(arg robot)_camera/rgb/image_rect_color" to="/$(arg robot)/rgb_remote"/>
 
 <!-- Skip N images for every image published (rgb/depth/depth_registered/ir) Range: 0 to 10 -->
-<param name="/$(arg robot)_camera/driver/data_skip" value="4" />
+<param name="/$(arg robot)_camera/driver/data_skip" value="$(arg data_skip)" />
 
 <!-- Image output mode for the color/grayscale image Possible values are:
 SXGA_15Hz (1): 1280x1024@15Hz, VGA_30Hz (2): 640x480@30Hz,   VGA_25Hz (3): 640x480@25Hz,

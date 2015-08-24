@@ -15,6 +15,8 @@ rosed rgbd_launch kinect_frames.launch
 -->
 <arg name="robot" />
 <arg name="publish_tf" default="true" />
+<!-- Skip N images for every image published (rgb/depth/depth_registered/ir) Range: 0 to 10 -->
+<arg name="data_skip" default="4" />
 <!-- the three different low-level drivers - please choose one and only one -->
 <arg name="use_freenect" default="true"/>
 <arg name="use_openni1" default="false"/>
@@ -27,6 +29,7 @@ rosed rgbd_launch kinect_frames.launch
 <include if="$(arg use_freenect)" file="$(find kinect)/launch/freenect_node.launch">
   <arg name="robot" value="$(arg robot)" />
   <arg name="publish_tf" value="$(arg publish_tf)" />
+  <arg name="data_skip" value="$(arg data_skip)" />
   <arg name="rgb_camera_info_url" value="$(arg rgb_camera_info_url)" />
   <arg name="depth_camera_info_url" value="$(arg depth_camera_info_url)" />
 </include>
@@ -35,6 +38,7 @@ rosed rgbd_launch kinect_frames.launch
 <include if="$(arg use_openni1)" file="$(find kinect)/launch/openni1_node.launch">
   <arg name="robot" value="$(arg robot)" />
   <arg name="publish_tf" value="$(arg publish_tf)" />
+  <arg name="data_skip" value="$(arg data_skip)" />
   <arg name="rgb_camera_info_url" value="$(arg rgb_camera_info_url)" />
   <arg name="depth_camera_info_url" value="$(arg depth_camera_info_url)" />
 </include>
