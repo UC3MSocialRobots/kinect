@@ -1,30 +1,18 @@
 ### nite_primitive_standalone
 add_executable(nite_primitive_standalone.exe
-               nite_primitive_standalone.cpp
-
-
-
-               )
-
+               nite_primitive_standalone.cpp)
 target_link_libraries(nite_primitive_standalone.exe
                       OpenNI ${orocos_kdl_LIBRARIES} #XnVNite
-                      ${catkin_LIBRARIES}
-                      )
-
-### link it in addition with effect_collection, as it is needed here
-#~ target_link_libraries(nite_primitive_standalone effect_collection)
+                      ${catkin_LIBRARIES})
+add_dependencies(nite_primitive_standalone.exe kinect_generate_messages_cpp)
 
 ### nite_primitive
 add_library(nite_primitive
-            nite_primitive.cpp
-            # fake dependencies of nite_fx (making it visible in QtCreator)
-            )
-
+            nite_primitive.cpp)
 target_link_libraries(nite_primitive
                       OpenNI ${orocos_kdl_LIBRARIES} #XnVNite
-                      ${catkin_LIBRARIES}
-                      )
-
+                      ${catkin_LIBRARIES})
+add_dependencies(nite_primitive  kinect_generate_messages_cpp)
 install(TARGETS nite_primitive
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}

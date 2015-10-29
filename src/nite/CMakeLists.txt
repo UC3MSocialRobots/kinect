@@ -1,8 +1,5 @@
 IF(AD_USE_NITE)
-
-    add_executable(foo_nite_subscriber.exe foo_nite_subscriber.cpp
-                                       )
-    target_link_libraries(foo_nite_subscriber.exe  OpenNI
-                                                  ${catkin_LIBRARIES}) #XnVNite)
-
+  add_executable       (foo_nite_subscriber.exe foo_nite_subscriber.cpp)
+  target_link_libraries(foo_nite_subscriber.exe OpenNI ${catkin_LIBRARIES}) #XnVNite)
+  add_dependencies     (foo_nite_subscriber.exe ${catkin_EXPORTED_TARGETS})
 ENDIF(AD_USE_NITE)
