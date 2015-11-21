@@ -571,7 +571,7 @@ public:
 
   //////////////////////////////////////////////////////////////////////////////
 
-  static void XN_CALLBACK_TYPE User_NewUser(xn::UserGenerator& generator, UserId nId, void* pCookie) {
+  static void XN_CALLBACK_TYPE User_NewUser(xn::UserGenerator& /*generator*/, UserId nId, void* pCookie) {
     ROS_WARN("New User %d", nId);
     NitePrimitiveClass* this_ptr = (NitePrimitiveClass*) pCookie;
 
@@ -585,21 +585,21 @@ public:
   //////////////////////////////////////////////////////////////////////////////
 
   static void XN_CALLBACK_TYPE User_LostUser
-  (xn::UserGenerator& generator, UserId nId, void* pCookie) {
+  (xn::UserGenerator& /*generator*/, UserId nId, void* /*pCookie*/) {
     ROS_WARN("Lost user %d", nId);
   }
 
   //////////////////////////////////////////////////////////////////////////////
 
   static void XN_CALLBACK_TYPE UserCalibration_CalibrationStart
-  (xn::SkeletonCapability& capability, UserId nId, void* pCookie) {
+  (xn::SkeletonCapability& /*capability*/, UserId nId, void* /*pCookie*/) {
     ROS_WARN("Calibration started for user %d", nId);
   }
 
   //////////////////////////////////////////////////////////////////////////////
 
   static void XN_CALLBACK_TYPE UserCalibration_CalibrationEnd
-  (xn::SkeletonCapability& capability, UserId nId, XnBool bSuccess, void* pCookie) {
+  (xn::SkeletonCapability& /*capability*/, UserId nId, XnBool bSuccess, void* pCookie) {
     NitePrimitiveClass* this_ptr = (NitePrimitiveClass*) pCookie;
     if (bSuccess) {
       ROS_WARN("Calibration complete, start tracking user %d", nId);
@@ -618,7 +618,7 @@ public:
   //////////////////////////////////////////////////////////////////////////////
 
   static void XN_CALLBACK_TYPE UserPose_PoseDetected
-  (xn::PoseDetectionCapability& capability, XnChar const* strPose, UserId nId, void* pCookie) {
+  (xn::PoseDetectionCapability& /*capability*/, XnChar const* strPose, UserId nId, void* pCookie) {
     ROS_WARN("Pose %s detected for user %d", strPose, nId);
     NitePrimitiveClass* this_ptr = (NitePrimitiveClass*) pCookie;
     this_ptr->g_UserGenerator.GetPoseDetectionCap().StopPoseDetection(nId);
