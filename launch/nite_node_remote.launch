@@ -1,7 +1,7 @@
 <launch>
 <arg name="robot"/>
-<arg name="rate" default="10"/>
 <arg name="publish_tf" default="true"/>
+<arg name="rate" default="10"/>
 
 <!-- a special namespace "foo_camera", like openni.launch -->
 <group ns="$(arg robot)_camera">
