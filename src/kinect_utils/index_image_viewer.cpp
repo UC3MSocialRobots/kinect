@@ -46,28 +46,34 @@ in meaningful colors.
     The index images are of type unsigned short
     (16-bit unsigned integer - CV_16UC1)
 
+  - \b "skeletons"
+    [height_detector::NiteSkeletonList]
+    The list of skeletons
+
 \section Publications
-
+  None.
  */
-
-#include <ros/ros.h>
-#include <std_msgs/Int32.h>
-#include <geometry_msgs/Point.h>
 #include <image_transport/image_transport.h>
-#include <image_transport/subscriber.h>
 #include <cv_bridge/cv_bridge.h>
-#include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
+// kinect
 #include "kinect/user_image_to_rgb.h"
+#include "kinect/skeleton_utils.h"
 
 cv_bridge::CvImageConstPtr bridge_img;
-cv::Mat3b _out_img;
-cv::Mat3b _out_img_scaled;
+cv::Mat3b _out_img, _out_img_scaled;
 int _data_size = 16;
 double _resize_scale = 1;
-std::string _input_topic = "index_image";
 std::string _window_name;
+kinect::NiteSkeletonList _skeleton_list;
+ros::Time _skeleton_time;
 
+////////////////////////////////////////////////////////////////////////////////
+
+void skeleton_cb(const kinect::NiteSkeletonList::ConstPtr msg) {
+  _skeleton_list = *msg;
+  _skeleton_time = msg->header.stamp;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -82,6 +88,8 @@ void image_callback(const sensor_msgs::ImageConstPtr& msg) {
   }
 
   user_image_to_rgb(bridge_img->image, _out_img, _data_size);
+  if ((ros::Time::now() - _skeleton_time).toSec() < 1)
+    skeleton_utils::draw_skeleton_list(_out_img, _skeleton_list);
 
   // display image
   if (_resize_scale == 1) {
@@ -103,7 +111,7 @@ int main(int argc, char** argv) {
   ros::init(argc, argv, "index_image_viewer");
   ros::NodeHandle nh_public, nh_private("~");
   // get params
-  _input_topic = "index_image_viewer";
+  std::string _input_topic = "index_image_viewer";
   nh_private.param("data_size", _data_size, _data_size);
   nh_private.param("input_topic", _input_topic, _input_topic);
   nh_private.param("resize_scale", _resize_scale, _resize_scale);
@@ -112,6 +120,7 @@ int main(int argc, char** argv) {
   image_transport::ImageTransport transport(nh_public);
   image_transport::Subscriber sub = transport.subscribe
       (_input_topic, 1, image_callback);
+  ros::Subscriber skel_sub = nh_public.subscribe("skeletons", 1, skeleton_cb);
 
   ROS_INFO("index_image_viewer: display index image '%s'",
            sub.getTopic().c_str());

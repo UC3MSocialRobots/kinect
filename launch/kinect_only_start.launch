@@ -29,6 +29,11 @@ http://answers.ros.org/question/12328/using-openni_launch-in-a-multirobot-system
               _z:=1.3" />
 </include>
 
+<!-- joystick control of the Kinect tilt angle -->
+<include file="$(find kinect)/launch/kinect_aux_joy.launch">
+  <arg name="robot" value="$(arg robot)" />
+</include>
+
 
 <!-- ******************************* SKILLS ******************************* -->
 <!-- ETTS -->
