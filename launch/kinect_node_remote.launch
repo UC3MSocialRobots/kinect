@@ -1,56 +1,60 @@
 <launch>
-<!-- A high-level node for Kinect data acquisition.
-Can use three different (exclusive) drivers
- * OpenNI 1.*
- * OpenNI 2.*
- * libfreenect
+    <!-- A high-level node for Kinect data acquisition.
+    Can use three different (exclusive) drivers
+     * OpenNI 1.*
+     * OpenNI 2.*
+     * libfreenect
 
-Publishes the following topics:
-* /$(arg robot)/rgb_remote
-* /$(arg robot)/depth_remote
+    Publishes the following topics:
+    * /$(arg robot)/rgb_remote
+    * /$(arg robot)/depth_remote
 
-Documentation for common parameters:
-http://wiki.ros.org/rgbd_launch
-rosed rgbd_launch kinect_frames.launch
--->
-<arg name="robot" />
-<arg name="publish_tf" default="true" />
-<!-- Skip N images for every image published (rgb/depth/depth_registered/ir) Range: 0 to 10 -->
-<arg name="data_skip" default="4" />
-<!-- the three different low-level drivers - please choose one and only one -->
-<arg name="use_freenect" default="true"/>
-<arg name="use_openni1" default="false"/>
-<arg name="use_openni2" default="false"/>
-<!-- pass calibration files if needed -->
-<arg name="rgb_camera_info_url"   default="" />
-<arg name="depth_camera_info_url" default="" />
+    Documentation for common parameters:
+    http://wiki.ros.org/rgbd_launch
+    rosed rgbd_launch kinect_frames.launch
+    -->
+    <arg name="robot" />
+    
+    <arg name="publish_tf" default="true" />
+    
+    <!-- Skip N images for every image published (rgb/depth/depth_registered/ir) Range: 0 to 10 -->
+    <arg name="data_skip" default="4" />
+    
+    <!-- the three different low-level drivers - please choose one and only one -->
+    <arg name="use_freenect" default="true"/>
+    <arg name="use_openni1" default="false"/>
+    <arg name="use_openni2" default="false"/>
+    
+    <!-- pass calibration files if needed -->
+    <arg name="rgb_camera_info_url"   default="" />
+    <arg name="depth_camera_info_url" default="" />
 
-<!-- freenect -->
-<include if="$(arg use_freenect)" file="$(find kinect)/launch/freenect_node.launch">
-  <arg name="robot" value="$(arg robot)" />
-  <arg name="publish_tf" value="$(arg publish_tf)" />
-  <arg name="data_skip" value="$(arg data_skip)" />
-  <arg name="rgb_camera_info_url" value="$(arg rgb_camera_info_url)" />
-  <arg name="depth_camera_info_url" value="$(arg depth_camera_info_url)" />
-</include>
+    <!-- freenect -->
+    <include if="$(arg use_freenect)" file="$(find kinect)/launch/freenect_node.launch">
+        <arg name="robot" value="$(arg robot)" />
+        <arg name="publish_tf" value="$(arg publish_tf)" />
+        <arg name="data_skip" value="$(arg data_skip)" />
+        <arg name="rgb_camera_info_url" value="$(arg rgb_camera_info_url)" />
+        <arg name="depth_camera_info_url" value="$(arg depth_camera_info_url)" />
+    </include>
 
-<!-- OpenNI 1.* -->
-<include if="$(arg use_openni1)" file="$(find kinect)/launch/openni1_node.launch">
-  <arg name="robot" value="$(arg robot)" />
-  <arg name="publish_tf" value="$(arg publish_tf)" />
-  <arg name="data_skip" value="$(arg data_skip)" />
-  <arg name="rgb_camera_info_url" value="$(arg rgb_camera_info_url)" />
-  <arg name="depth_camera_info_url" value="$(arg depth_camera_info_url)" />
-</include>
+    <!-- OpenNI 1.* -->
+    <include if="$(arg use_openni1)" file="$(find kinect)/launch/openni1_node.launch">
+        <arg name="robot" value="$(arg robot)" />
+        <arg name="publish_tf" value="$(arg publish_tf)" />
+        <arg name="data_skip" value="$(arg data_skip)" />
+        <arg name="rgb_camera_info_url" value="$(arg rgb_camera_info_url)" />
+        <arg name="depth_camera_info_url" value="$(arg depth_camera_info_url)" />
+    </include>
 
-<!-- OpenNI 2.* -->
-<include if="$(arg use_openni2)" file="$(find kinect)/launch/openni2_node.launch">
-  <arg name="robot" value="$(arg robot)" />
-</include>
+    <!-- OpenNI 2.* -->
+    <include if="$(arg use_openni2)" file="$(find kinect)/launch/openni2_node.launch">
+        <arg name="robot" value="$(arg robot)" />
+    </include>
 
-<!-- publish kinect serial -->
-<group ns="$(arg robot)">
-  <node pkg="kinect" type="publish_kinect_serial.exe"
-        name="publish_kinect_serial"  output="screen"/>
-</group>
+    <!-- publish kinect serial -->
+    <group ns="$(arg robot)">
+        <node pkg="kinect" type="publish_kinect_serial.exe"
+            name="publish_kinect_serial"  output="screen"/>
+    </group>
 </launch>

@@ -1,37 +1,41 @@
 <launch>
-<!-- publishes the following topics:
-  * /$(arg robot)/rgb
-  * /$(arg robot)/depth
-obtained by republishing the data published by kinect_node_remote.launch:
-  * /$(arg robot)/rgb_remote
-  * /$(arg robot)/depth_remote
--->
-<arg name="robot"/>
-<arg name="publish_tf" default="true" />
-<!-- Skip N images for every image published (rgb/depth/depth_registered/ir) Range: 0 to 10 -->
-<arg name="data_skip" default="4" />
-<!-- the three different low-level drivers - please choose one and only one -->
-<arg name="use_freenect" default="false"/>
-<arg name="use_openni1" default="true"/>
-<arg name="use_openni2" default="false"/>
-<!-- pass calibration files if needed -->
-<arg name="rgb_camera_info_url"   default="" />
-<arg name="depth_camera_info_url" default="" />
+    <!-- publishes the following topics:
+      * /$(arg robot)/rgb
+      * /$(arg robot)/depth
+    obtained by republishing the data published by kinect_node_remote.launch:
+      * /$(arg robot)/rgb_remote
+      * /$(arg robot)/depth_remote
+    -->
+    <arg name="robot"/>
+    
+    <arg name="publish_tf" default="true" />
+    
+    <!-- Skip N images for every image published (rgb/depth/depth_registered/ir) Range: 0 to 10 -->
+    <arg name="data_skip" default="4" />
+    
+    <!-- the three different low-level drivers - please choose one and only one -->
+    <arg name="use_freenect" default="true"/>
+    <arg name="use_openni1" default="false"/>
+    <arg name="use_openni2" default="false"/>
+    
+    <!-- pass calibration files if needed -->
+    <arg name="rgb_camera_info_url"   default="" />
+    <arg name="depth_camera_info_url" default="" />
 
-<!-- remappings image topics from remote to local -->
-<remap from="/$(arg robot)/rgb_remote" to="/$(arg robot)/rgb"/>
-<remap from="/$(arg robot)/depth_remote" to="/$(arg robot)/depth"/>
+    <!-- remappings image topics from remote to local -->
+    <remap from="/$(arg robot)/rgb_remote" to="/$(arg robot)/rgb"/>
+    <remap from="/$(arg robot)/depth_remote" to="/$(arg robot)/depth"/>
 
-<!-- include kinect_node_remote.launch and pass the params -->
-<include file="$(find kinect)/launch/kinect_node_remote.launch">
-  <arg name="robot" value="$(arg robot)" />
-  <arg name="use_freenect" value="$(arg use_freenect)" />
-  <arg name="use_openni1" value="$(arg use_openni1)" />
-  <arg name="use_openni2" value="$(arg use_openni2)" />
+    <!-- include kinect_node_remote.launch and pass the params -->
+    <include file="$(find kinect)/launch/kinect_node_remote.launch">
+        <arg name="robot" value="$(arg robot)" />
+        <arg name="use_freenect" value="$(arg use_freenect)" />
+        <arg name="use_openni1" value="$(arg use_openni1)" />
+        <arg name="use_openni2" value="$(arg use_openni2)" />
 
-  <arg name="rgb_camera_info_url" value="$(arg rgb_camera_info_url)" />
-  <arg name="depth_camera_info_url" value="$(arg depth_camera_info_url)" />
-  <arg name="publish_tf" value="$(arg publish_tf)" />
-  <arg name="data_skip" value="$(arg data_skip)" />
-</include>
+        <arg name="rgb_camera_info_url" value="$(arg rgb_camera_info_url)" />
+        <arg name="depth_camera_info_url" value="$(arg depth_camera_info_url)" />
+        <arg name="publish_tf" value="$(arg publish_tf)" />
+        <arg name="data_skip" value="$(arg data_skip)" />
+    </include>
 </launch>
