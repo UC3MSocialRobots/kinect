@@ -56,18 +56,18 @@ The transform {frame_id} -> {child_frame_id}
 int up_button = 1, down_button = 2;
 double current_angle = 0, incr = 5;
 ros::Publisher pub_tilt;
-std_msgs::Float64 msg;
+std_msgs::Float64 string_msg;
 
 ////////////////////////////////////////////////////////////////////////////////
 
 void joy_cb(const sensor_msgs::Joy::ConstPtr& joy) {
   if (joy->buttons[up_button]) {
-    msg.data = current_angle + incr;
-    pub_tilt.publish(msg);
+    string_msg.data = current_angle + incr;
+    pub_tilt.publish(string_msg);
   }
   else if (joy->buttons[down_button]) {
-    msg.data = current_angle - incr;
-    pub_tilt.publish(msg);
+    string_msg.data = current_angle - incr;
+    pub_tilt.publish(string_msg);
   }
 } // end joy_cb();
 
