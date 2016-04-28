@@ -61,6 +61,12 @@ std_msgs::Float64 string_msg;
 ////////////////////////////////////////////////////////////////////////////////
 
 void joy_cb(const sensor_msgs::Joy::ConstPtr& joy) {
+  int nbuttons = joy->buttons.size();
+  if (nbuttons < up_button+1 || nbuttons < down_button+1) {
+    ROS_WARN_THROTTLE(1, "joy2kinect_tilt: not enough buttons on the joystick: "
+      "we have %i, we expected at least %i\n" , nbuttons, std::max(up_button+1, down_button+1));
+    return;
+  }
   if (joy->buttons[up_button]) {
     string_msg.data = current_angle + incr;
     pub_tilt.publish(string_msg);
