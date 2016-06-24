@@ -5,8 +5,9 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra") # add extra warnings
 project(kinect)
 ### 3 - Find other CMake/Catkin packages needed for build
 find_package(catkin REQUIRED COMPONENTS
-  cv_bridge roscpp tf message_generation roslib geometry_msgs rosbag
-  image_geometry image_transport nodelet)
+  cv_bridge image_geometry image_transport message_generation message_runtime nodelet roscpp roslib rosbag tf)
+  #~ cv_bridge roscpp tf message_generation roslib geometry_msgs rosbag
+  #~ image_geometry image_transport nodelet)
 
 find_package(PCL 1.2 REQUIRED)
 find_package(orocos_kdl REQUIRED)
