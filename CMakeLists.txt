@@ -6,7 +6,6 @@ project(kinect)
 ### 3 - Find other CMake/Catkin packages needed for build
 SET(ROSDEPS cv_bridge message_generation geometry_msgs image_geometry image_transport rosbag tf)
 find_package(catkin REQUIRED COMPONENTS ${ROSDEPS})
-
 find_package(PCL 1.2 REQUIRED)
 find_package(orocos_kdl REQUIRED)
 

@@ -3,6 +3,8 @@
 The kinect package provides nodes to acquire information
 from a Microsoft Kinect device.
 
+[![Build Status](https://travis-ci.org/UC3MSocialRobots/kinect.svg)](https://travis-ci.org/UC3MSocialRobots/kinect)
+
 Drivers
 =======
 
