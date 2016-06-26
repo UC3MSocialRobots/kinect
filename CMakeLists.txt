@@ -3,8 +3,8 @@ cmake_minimum_required(VERSION 2.8.3)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra") # add extra warnings
 ### 2- Package Name
 project(kinect)
-SET(ROSDEPS roscpp cv_bridge message_generation geometry_msgs image_geometry image_transport rosbag tf)
 ### 3 - Find other CMake/Catkin packages needed for build
+SET(ROSDEPS roscpp cv_bridge message_generation geometry_msgs image_geometry image_transport rosbag tf)
 find_package(catkin REQUIRED COMPONENTS ${ROSDEPS})
 
 find_package(PCL 1.2 REQUIRED)
