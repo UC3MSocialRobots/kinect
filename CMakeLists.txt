@@ -3,11 +3,9 @@ cmake_minimum_required(VERSION 2.8.3)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra") # add extra warnings
 ### 2- Package Name
 project(kinect)
+SET(ROSDEPS roscpp cv_bridge message_generation geometry_msgs image_geometry image_transport rosbag tf)
 ### 3 - Find other CMake/Catkin packages needed for build
-find_package(catkin REQUIRED COMPONENTS
-  cv_bridge image_geometry image_transport message_generation message_runtime nodelet roscpp roslib rosbag tf)
-  #~ cv_bridge roscpp tf message_generation roslib geometry_msgs rosbag
-  #~ image_geometry image_transport nodelet)
+find_package(catkin REQUIRED COMPONENTS ${ROSDEPS})
 
 find_package(PCL 1.2 REQUIRED)
 find_package(orocos_kdl REQUIRED)
@@ -34,8 +32,7 @@ generate_messages(
 ### 6 - Specify package build info export (catkin_package())
 catkin_package(
   INCLUDE_DIRS include
-  CATKIN_DEPENDS roscpp message_runtime roslib cv_bridge tf rosbag image_geometry
-                 image_transport nodelet
+  CATKIN_DEPENDS ${ROSDEPS}
   DEPENDS orocos_kdl
 )
 ### 7 - Libraries/Executables to build (add_library()/add_executable()/target_link_libraries())
