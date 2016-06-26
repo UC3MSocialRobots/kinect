@@ -14,7 +14,7 @@ Dependencies: please run the ```rosdep``` utility:
 ```bash
 $ sudo apt-get install python-rosdep
 $ sudo rosdep init
-$ rosdep install kinect
+$ rosdep install kinect --ignore-src
 ```
 
 Drivers
