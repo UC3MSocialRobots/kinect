@@ -16,6 +16,8 @@
   <depend>image_geometry</depend>
   <depend>image_transport</depend>
   <depend>message_generation</depend>
+  <depend>orocos_kdl</depend>
+  <depend>pcl_ros</depend>
   <depend>rosbag</depend>
   <depend>tf</depend>
 
