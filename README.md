@@ -5,6 +5,17 @@ from a Microsoft Kinect device.
 
 [![Build Status](https://travis-ci.org/UC3MSocialRobots/kinect.svg)](https://travis-ci.org/UC3MSocialRobots/kinect)
 
+How to install
+==============
+
+Dependencies: please run the ```rosdep``` utility:
+
+```bash
+$ sudo apt-get install python-rosdep
+$ sudo rosdep init
+$ rosdep install kinect
+```
+
 Drivers
 =======
 
