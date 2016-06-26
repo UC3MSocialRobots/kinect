@@ -11,12 +11,15 @@
   <license>LGPLv3</license>
   <!-- dependencies -->
   <buildtool_depend>catkin</buildtool_depend>
+  <!-- system -->
+  <depend>libusb-dev</depend>
+  <depend>orocos_kdl</depend>
+  <!-- ROS -->
   <depend>cv_bridge</depend>
   <depend>geometry_msgs</depend>
   <depend>image_geometry</depend>
   <depend>image_transport</depend>
   <depend>message_generation</depend>
-  <depend>orocos_kdl</depend>
   <depend>rosbag</depend>
   <depend>tf</depend>
 
