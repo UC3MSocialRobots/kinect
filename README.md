@@ -1,6 +1,7 @@
 # `kinect`
 
-The kinect package provides nodes to acquire information
+`kinect` is a [ROS](http://www.ros.org/) package that
+provides nodes to acquire information
 from a Microsoft Kinect device.
 
 [![Build Status](https://travis-ci.org/UC3MSocialRobots/kinect.svg)](https://travis-ci.org/UC3MSocialRobots/kinect)
