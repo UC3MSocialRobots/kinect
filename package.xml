@@ -12,7 +12,7 @@
   <!-- dependencies -->
   <buildtool_depend>catkin</buildtool_depend>
   <!-- system -->
-  <depend>libusb-dev</depend>
+  <depend>libusb-1.0-dev</depend>
   <depend>orocos_kdl</depend>
   <!-- ROS -->
   <depend>cv_bridge</depend>
