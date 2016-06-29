@@ -34,6 +34,7 @@ ________________________________________________________________________________
 #endif // not NITE_FX
 
 #include <opencv2/highgui/highgui.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
 #include "kinect/std_utils.h"
 
 namespace skeleton_utils {
