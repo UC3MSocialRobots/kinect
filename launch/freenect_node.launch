@@ -18,14 +18,15 @@ For specific parameters:
 <!-- pass calibration files if needed -->
 <arg name="rgb_camera_info_url"   default="" />
 <arg name="depth_camera_info_url" default="" />
+<arg name="camera_type" default="camera"/>
 
 <!-- rgb remapping -->
-<remap from="/$(arg robot)_camera/rgb/image_rect_color" to="/$(arg robot)/rgb_remote"/>
+<remap from="/$(arg robot)_$(arg camera_type)/rgb/image_rect_color" to="/$(arg robot)/rgb_remote"/>
 
 <!-- must use a unique "camera" arg to ensure unicity of TF,
     so prefix it with "robot" -->
 <include file="$(find freenect_launch)/launch/freenect.launch">
-  <arg name="camera" value="$(arg robot)_camera" />
+  <arg name="camera" value="$(arg robot)_$(arg camera_type)" />
   <arg name="data_skip" value="$(arg data_skip)"/>
   <arg name="publish_tf" value="$(arg publish_tf)" />
   <arg name="rgb_camera_info_url" value="$(arg rgb_camera_info_url)" />
