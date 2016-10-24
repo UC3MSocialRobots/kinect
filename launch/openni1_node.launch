@@ -18,6 +18,7 @@ For specific parameters:
 <!-- pass calibration files if needed -->
 <arg name="rgb_camera_info_url"   default="" />
 <arg name="depth_camera_info_url" default="" />
+<!-- camera type (default: camera; ex: kinect)-->
 <arg name="camera_type" default="camera"/>
 
 <!-- rgb remapping -->

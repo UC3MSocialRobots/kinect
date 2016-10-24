@@ -28,6 +28,9 @@
     <!-- pass calibration files if needed -->
     <arg name="rgb_camera_info_url"   default="" />
     <arg name="depth_camera_info_url" default="" />
+    
+    <!-- camera type (default: camera; ex: kinect)-->
+    <arg name="camera_type" default="camera" />
 
     <!-- freenect -->
     <include if="$(arg use_freenect)" file="$(find kinect)/launch/freenect_node.launch">
@@ -36,6 +39,7 @@
         <arg name="data_skip" value="$(arg data_skip)" />
         <arg name="rgb_camera_info_url" value="$(arg rgb_camera_info_url)" />
         <arg name="depth_camera_info_url" value="$(arg depth_camera_info_url)" />
+        <arg name="camera_type" value="$(arg camera_type)" />
     </include>
 
     <!-- OpenNI 1.* -->
@@ -45,6 +49,7 @@
         <arg name="data_skip" value="$(arg data_skip)" />
         <arg name="rgb_camera_info_url" value="$(arg rgb_camera_info_url)" />
         <arg name="depth_camera_info_url" value="$(arg depth_camera_info_url)" />
+        <arg name="camera_type" value="$(arg camera_type)" />
     </include>
 
     <!-- OpenNI 2.* -->
