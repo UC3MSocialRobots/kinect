@@ -89,7 +89,7 @@ void image_callback(const sensor_msgs::ImageConstPtr& msg) {
 
   user_image_to_rgb(bridge_img->image, _out_img, _data_size);
   if ((ros::Time::now() - _skeleton_time).toSec() < 1)
-    skeleton_utils::draw_skeleton_list(_out_img, _skeleton_list);
+    vision_utils::draw_skeleton_list(_out_img, _skeleton_list);
 
   // display image
   if (_resize_scale == 1) {

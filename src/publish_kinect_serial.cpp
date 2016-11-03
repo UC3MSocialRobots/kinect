@@ -56,9 +56,9 @@ inline bool get_serial_from_lsusb(std::string & ans) {
   std::string device_id;
   order << "lsusb | grep \"Xbox NUI Camera\" | grep -Po '[0-9a-z]*:[0-9a-z][0-9a-z]*'"
         << " > " << KINECT_lsusb_FILE;
-  std_utils::exec_system(order.str());
-  bool success = std_utils::retrieve_file(KINECT_lsusb_FILE, device_id);
-  std_utils::find_and_replace(device_id, "\n", ""); // remove breaklines
+  vision_utils::exec_system(order.str());
+  bool success = vision_utils::retrieve_file(KINECT_lsusb_FILE, device_id);
+  vision_utils::find_and_replace(device_id, "\n", ""); // remove breaklines
   if (!success || device_id.size() == 0) {
     ROS_WARN("Could not retrieve file '%s'. Cannot get serial nb of kinect", KINECT_lsusb_FILE);
     ROS_WARN( "vendor:product is %s\n", device_id.c_str() );
@@ -69,10 +69,10 @@ inline bool get_serial_from_lsusb(std::string & ans) {
   order.str("");
   order << "lsusb -v -d " << device_id << " | grep -e \"iSerial\" | awk '{print $3}'"
         << " > " << KINECT_lsusb_FILE;
-  std_utils::exec_system(order.str());
-  success = std_utils::retrieve_file(KINECT_lsusb_FILE, ans);
+  vision_utils::exec_system(order.str());
+  success = vision_utils::retrieve_file(KINECT_lsusb_FILE, ans);
   ROS_WARN( "Retrieved device ID" );
-  std_utils::find_and_replace(ans, "\n", ""); // remove breaklines
+  vision_utils::find_and_replace(ans, "\n", ""); // remove breaklines
   if (!success || ans.size() == 0) {
     ROS_WARN("Could not convert device ID to serial (file '%s'). Cannot get serial nb of kinect",
              KINECT_lsusb_FILE);
@@ -86,7 +86,7 @@ inline bool is_asus() {
   std::ostringstream order;
   //order << "lsusb -v 2> /dev/null | grep PrimeSense";
   order << "lsusb -v -d 1d27:0600";
-  std::string output = std_utils::exec_system_get_output(order.str().c_str());
+  std::string output = vision_utils::exec_system_get_output(order.str().c_str());
   // printf("output:'%s'\n", output.c_str());
   if (output.find("PrimeSense Device") != std::string::npos)
     return true;

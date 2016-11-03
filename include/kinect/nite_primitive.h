@@ -108,7 +108,7 @@ along with a message enclosing their 3D position.
 #include <image_transport/image_transport.h>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
-#include "kinect/kinect_openni_utils.h"
+#include.*kinect_openni_utils.h.*
 #endif // NITE_FX not defined
 
 // NITE
@@ -127,7 +127,7 @@ along with a message enclosing their 3D position.
 #ifdef DEBUG
 //#define DEBUG_PRINT(...)          ROS_WARN(__VA_ARGS__)
 #define DEBUG_PRINT(...)          ROS_WARN_THROTTLE(1, __VA_ARGS__)
-#define DEBUG_TIMER_INIT          Timer timer;
+#define DEBUG_TIMER_INIT          vision_utils::Timer timer;
 //#define DEBUG_TIMER_PRINT(...)    timer.printTime(__VA_ARGS__)
 #define DEBUG_TIMER_PRINT(...)    ROS_WARN_THROTTLE(1, "Time for %s: %g ms", __VA_ARGS__, timer.time());
 #else // no DEBUG
@@ -176,7 +176,7 @@ public:
   /*!
    * Read the camera info objects from ROS binary files.
    * These binary files can be obtained for instance using
-   * std_utils::ros_object_to_file().
+   * vision_utils::ros_object_to_file().
    * \param kinect_serial_number
    *   The serial number of the Kinect, for instance KINECT_SERIAL_ARNAUD()
    * \param depth_camera_info, rgb_camera_info
@@ -198,7 +198,7 @@ public:
              depth_binary_name.str().c_str());
       return false;
     }
-    std_utils::ros_object_from_file(depth_binary_name.str(), depth_camera_info);
+    vision_utils::ros_object_from_file(depth_binary_name.str(), depth_camera_info);
 
     // read the binary for rgb image
     std::ostringstream rgb_binary_name;
@@ -208,7 +208,7 @@ public:
              rgb_binary_name.str().c_str());
       return false;
     }
-    std_utils::ros_object_from_file(rgb_binary_name.str(), rgb_camera_info);
+    vision_utils::ros_object_from_file(rgb_binary_name.str(), rgb_camera_info);
 
     // if we are here, success
     //  printf("read_camera_info_binary_files(): reading from '%s' and '%s' was a success.\n",
@@ -344,7 +344,7 @@ public:
       user_img_pub = transport->advertise("user/image", QUEUE_SIZE);
 
       // try to get the serial
-      //    std::string kinect_serial_nb = nite_utils::get_kinect_serial_number(g_Context);
+      //    std::string kinect_serial_nb = vision_utils::get_kinect_serial_number(g_Context);
       //    ROS_WARN("serial_nb:'%s'", kinect_serial_nb.c_str());
       // set serial number as a param
       //nh_public.setParam("kinect_serial_number", kinect_serial_nb);
@@ -418,7 +418,7 @@ public:
 
   void run() {
     ROS_WARN("run()");
-    skeleton_utils::Rate r(rate);
+    vision_utils::Rate r(rate);
 
     while (ros::ok()) {
       DEBUG_PRINT("run loop");
@@ -561,7 +561,7 @@ public:
 
     // paint the user
     user_image_to_rgb(user8, user_illus, 8);
-    skeleton_utils::draw_skeleton_list(user_illus, skeleton_list_msg, 2);
+    vision_utils::draw_skeleton_list(user_illus, skeleton_list_msg, 2);
 
     cv::imshow("depth8_illus", depth8_illus);
     cv::imshow("user_illus", user_illus);
@@ -975,7 +975,7 @@ private:
   XnChar g_strPose[20];
 
   // ros::Time
-  skeleton_utils::Time messages_timestamp;
+  vision_utils::Time messages_timestamp;
 
   //! true for displaying input
   bool display_images_flag;
@@ -995,7 +995,7 @@ private:
   //! the message that will be filled with skeleton
   kinect::NiteSkeletonList skeleton_list_msg;
   //! convert joint ID to string
-  skeleton_utils::JointId2StringConverter joint_id_converter;
+  vision_utils::JointId2StringConverter joint_id_converter;
   //! the skeleton publisher
 #ifndef NITE_FX
   ros::Publisher skeletons_pub;

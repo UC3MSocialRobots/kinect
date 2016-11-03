@@ -65,7 +65,7 @@ inline void user_image_to_rgb(const cv::Mat & user, cv::Mat3b & out,
           break;
       } // end switch
       if (indices_image_val!= 0) {
-        color_utils::indexed_color255
+        vision_utils::indexed_color255
             (_out_img_ptr[3 * col + 2],
             _out_img_ptr[3 * col + 1],
             _out_img_ptr[3 * col    ],

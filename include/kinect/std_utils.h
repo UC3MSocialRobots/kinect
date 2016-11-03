@@ -235,7 +235,7 @@ inline bool retrieve_file(const std::string & filepath, std::string & ans) {
  * \param content the string to save
  */
 inline void save_file(const std::string & filepath, const std::string & content) {
-  // maggieDebug2("save_file('%s')", filepath.c_str());
+  // ROS_INFO("save_file('%s')", filepath.c_str());
   std::ofstream myfile(filepath.c_str());
   // check if success
   if (myfile.is_open())

@@ -24,9 +24,9 @@ A simple test file for \a NiteSubscriberTemplate.
 
  */
 
-//#include "vision_utils/utils/timestamp.h"
+//#include "vision_utils/timestamp.h"
 #include "kinect/nite_subscriber_template.h"
-//#include "vision_utils/io.h"
+//
 #include "kinect/user_image_to_rgb.h"
 #include "kinect/skeleton_utils.h"
 
@@ -46,11 +46,11 @@ public:
           const cv::Mat1b & user,
           const kinect::NiteSkeletonList & skeleton_list) {
     ROS_INFO_THROTTLE(1, "FooNiteSubscriber:fn()");
-    //image_utils::depth_image_to_vizualisation_color_image
-    //    (depth, depth_illus, image_utils::FULL_RGB_SCALED);
+    //vision_utils::depth_image_to_vizualisation_color_image
+    //    (depth, depth_illus, vision_utils::FULL_RGB_SCALED);
 
     user_image_to_rgb(user, user_illus, 8);
-    skeleton_utils::draw_skeleton_list(user_illus, skeleton_list);
+    vision_utils::draw_skeleton_list(user_illus, skeleton_list);
 
     cv::imshow("color", color);
     cv::imshow("depth", depth);
@@ -58,8 +58,8 @@ public:
     cv::imshow("user_illus", user_illus);
         char c = cv::waitKey(10);
     if (c == 's') {
-      //std::string stamp = string_utils::timestamp();
-      //image_utils::write_rgb_depth_user_to_image_file
+      //std::string stamp = vision_utils::timestamp();
+      //vision_utils::write_rgb_depth_user_to_image_file
       //    (stamp, &color, &depth, &user, &user_illus);
     }
 

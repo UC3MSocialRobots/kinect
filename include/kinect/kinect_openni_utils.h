@@ -40,7 +40,7 @@ useful functions for working with a Kinect
 // OpenCV
 #include <opencv2/core/core.hpp>
 #include "kinect/std_utils.h"
-#include "kinect/color_utils_ros.h"
+
 
 
 inline std::string KINECT_SERIAL_ARNAUD() { return "A00365A10630110A"; }
@@ -68,7 +68,7 @@ bool read_camera_info_bag_files(const std::string & kinect_serial_number,
   // read the bag for depth image
   std::ostringstream depth_bag_name;
   depth_bag_name << prefix.str() << "_depth.bag";
-  if (!std_utils::file_exists(depth_bag_name.str())) {
+  if (!vision_utils::file_exists(depth_bag_name.str())) {
     printf("The depth camera info bag '%s' does not exist!\n",
            depth_bag_name.str().c_str());
     return false;
@@ -97,7 +97,7 @@ bool read_camera_info_bag_files(const std::string & kinect_serial_number,
   // read the bag for rgb image
   std::ostringstream rgb_bag_name;
   rgb_bag_name << prefix.str() << "_rgb.bag";
-  if (!std_utils::file_exists(rgb_bag_name.str())) {
+  if (!vision_utils::file_exists(rgb_bag_name.str())) {
     printf("The rgb camera info bag '%s' does not exist!\n",
            rgb_bag_name.str().c_str());
     return false;
@@ -132,7 +132,7 @@ bool read_camera_info_bag_files(const std::string & kinect_serial_number,
 /*!
  * Read the camera info objects from ROS binary files.
  * These binary files can be obtained for instance using
- * std_utils::ros_object_to_file().
+ * vision_utils::ros_object_to_file().
  * \param kinect_serial_number
  *   The serial number of the Kinect, for instance KINECT_SERIAL_ARNAUD()
  * \param depth_camera_info, rgb_camera_info
@@ -149,22 +149,22 @@ bool read_camera_info_binary_files(const std::string & kinect_serial_number,
   // read the binary for depth image
   std::ostringstream depth_binary_name;
   depth_binary_name << prefix.str() << "_depth.dat";
-  if (!std_utils::file_exists(depth_binary_name.str())) {
+  if (!vision_utils::file_exists(depth_binary_name.str())) {
     printf("The depth camera info binary '%s' does not exist!\n",
            depth_binary_name.str().c_str());
     return false;
   }
-  std_utils::ros_object_from_file(depth_binary_name.str(), depth_camera_info);
+  vision_utils::ros_object_from_file(depth_binary_name.str(), depth_camera_info);
 
   // read the binary for rgb image
   std::ostringstream rgb_binary_name;
   rgb_binary_name << prefix.str() << "_rgb.dat";
-  if (!std_utils::file_exists(rgb_binary_name.str())) {
+  if (!vision_utils::file_exists(rgb_binary_name.str())) {
     printf("The rgb camera info binary '%s' does not exist!\n",
            rgb_binary_name.str().c_str());
     return false;
   }
-  std_utils::ros_object_from_file(rgb_binary_name.str(), rgb_camera_info);
+  vision_utils::ros_object_from_file(rgb_binary_name.str(), rgb_camera_info);
 
   // if we are here, success
   //  printf("read_camera_info_binary_files(): reading from '%s' and '%s' was a success.\n",
@@ -274,14 +274,14 @@ bool get_kinect_serial_number_and_read_camera_model_files_if_needed
 #endif // USE
     return true;
   std::string kinect_serial_number;
-  bool success = kinect_openni_utils::try_to_get_kinect_serial_number
+  bool success = vision_utils::try_to_get_kinect_serial_number
                  (nh_public, kinect_serial_number);
   if (!success) {
     ROS_WARN_THROTTLE(1, "Unable to get the serial number of the Kinect, returning!");
     return false;
   }
   ROS_INFO("Serial number of the Kinect:'%s'", kinect_serial_number.c_str());
-  return kinect_openni_utils::read_camera_model_files
+  return vision_utils::read_camera_model_files
       (kinect_serial_number, depth_camera_model, rgb_camera_model);
 } // end get_kinect_serial_number_and_read_camera_model_files_if_needed()
 
@@ -363,15 +363,15 @@ inline cv::Point3d pixel2world_depth
  const image_geometry::PinholeCameraModel & depth_cam_model,
  const double & depth_value)
 {
-  if (std_utils::is_nan_depth(depth_value))
+  if (vision_utils::is_nan_depth(depth_value))
     return cv::Point3d(NAN_DOUBLE, NAN_DOUBLE, NAN_DOUBLE);
   cv::Point3d line_vec = depth_cam_model.projectPixelTo3dRay(depth_pt);
-  // double line_vec_norm = geometry_utils::norm(line_vec);
+  // double line_vec_norm = vision_utils::norm(line_vec);
   //  if (fabs(line_vec_norm) < 1E-5)
   //    return cv::Point3d(0, 0, 0);
   //    ROS_INFO("depth_pt%s, line_vec:%s, line_vec_norm:%g",
-  //             geometry_utils::printP2(depth_pt).c_str(),
-  //             geometry_utils::printP(line_vec).c_str(),
+  //             vision_utils::printP2(depth_pt).c_str(),
+  //             vision_utils::printP(line_vec).c_str(),
   //             line_vec_norm);
   // return line_vec * (depth_value / line_vec_norm);
 
@@ -451,7 +451,7 @@ inline bool pixel2world_depth
     for (int col = 0; col < cols; col += data_step) {
       if (use_mask && !mask_ptr[col])
         continue;
-      if (remove_nans && std_utils::is_nan_depth(depth_ptr[col]))
+      if (remove_nans && vision_utils::is_nan_depth(depth_ptr[col]))
         continue;
       depth_reprojected.push_back
           ( pixel2world_depth<Pt3>
@@ -594,13 +594,13 @@ inline bool pixel2world_rgb_color255
     for (int col = 0; col < cols; col += data_step) {
       if (use_mask && mask_ptr[col] == 0)
         continue;
-      if (remove_nans && std_utils::is_nan_depth(depth_ptr[col]))
+      if (remove_nans && vision_utils::is_nan_depth(depth_ptr[col]))
         continue;
       depth_reprojected.push_back
           ( pixel2world_depth<Pt3>
             (cv::Point2d(col + offset.x, row + offset.y),
              depth_cam_model, depth_ptr[col]) );
-      //colors.push_back(color_utils::uchar_bgr_color_to_ros_rgba_color(bgr_data[col][0], bgr_data[col][1], bgr_data[col][2]));
+      //colors.push_back(vision_utils::uchar_bgr_color_to_ros_rgba_color(bgr_data[col][0], bgr_data[col][1], bgr_data[col][2]));
       colors.push_back(Color255(bgr_data[col][0], bgr_data[col][1], bgr_data[col][2]));
     } // end loop col
   } // end loop row
@@ -637,7 +637,7 @@ inline bool pixel2world_rgb_color_rgba
   colors.clear();
   colors.reserve(colors_scalars.size());
   for (unsigned int color_idx = 0; color_idx < colors_scalars.size(); ++color_idx)
-    colors.push_back(color_utils::uchar_bgr_color_to_ros_rgba_color
+    colors.push_back(vision_utils::uchar_bgr_color_to_ros_rgba_color
                      (colors_scalars[color_idx][0],
                      colors_scalars[color_idx][1],
         colors_scalars[color_idx][2]));
@@ -753,7 +753,7 @@ inline double compute_pixel2meters_factor
   IplImage depth_img_ipl = depth_img;
   const double depth_value = CV_IMAGE_ELEM(&depth_img_ipl, float,
                                            (int) depth_pt.y, (int) depth_pt.x);
-  return kinect_openni_utils::compute_pixel2meters_factor
+  return vision_utils::compute_pixel2meters_factor
       (depth_img.size(), depth_camera_model, depth_value);
 }
 
@@ -775,12 +775,12 @@ inline double compute_pixel2meters_factor(const cv::Mat1f & depth_img,
                                           const cv::Point & depth_pt) {
   // get camera model
   image_geometry::PinholeCameraModel depth_camera_model, rgb_camera_model;
-  bool ok = kinect_openni_utils::read_camera_model_files
+  bool ok = vision_utils::read_camera_model_files
             (kinect_serial_number, depth_camera_model, rgb_camera_model);
   if (!ok)
     return NAN_DOUBLE;
   // get pixel2meters_factor
-  return kinect_openni_utils::compute_pixel2meters_factor
+  return vision_utils::compute_pixel2meters_factor
       (depth_img, depth_camera_model, depth_pt);
 }
 
@@ -810,7 +810,7 @@ inline double compute_average_pixel2meters_factor
     if (!mask(depth_pt))
       continue;
     // get pixel2meters_factor
-    double curr_factor = kinect_openni_utils::compute_pixel2meters_factor
+    double curr_factor = vision_utils::compute_pixel2meters_factor
                          (depth_img, depth_camera_model, depth_pt);
     if (isnan(curr_factor))
       continue;

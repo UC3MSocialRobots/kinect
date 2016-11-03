@@ -43,7 +43,7 @@ ________________________________________________________________________________
 #define NITESKELETONLITE_H
 
 #include <vector>
-#include "vision_utils/utils/foo_point.h"
+#include "vision_utils/foo_point.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -64,7 +64,7 @@ namespace geometry_msgs {
 struct Pose2D {
   double x, y, theta;
 };
-struct Pt3d : geometry_utils::FooPoint3d {
+struct Pt3d : vision_utils::FooPoint3d {
   inline double getX() const { return x; }
   inline double getY() const { return y; }
   inline double getZ() const { return z; }

@@ -63,8 +63,8 @@ ________________________________________________________________________________
 #include <opencv2/highgui/highgui.hpp>
 // AD
 #include <kinect/NiteSkeletonList.h>
-#include "kinect/kinect_openni_utils.h"
-//#include "vision_utils/utils/timer.h"
+#include.*kinect_openni_utils.h.*
+//#include "vision_utils/timer.h"
 
 class NiteSubscriberTemplate {
 public:
@@ -177,7 +177,7 @@ protected:
     // printf("NiteSubscriberTemplate::image_callback()\n");
 
     _last_header = color_msg->header;
-    kinect_openni_utils::get_kinect_serial_number_and_read_camera_model_files_if_needed
+    vision_utils::get_kinect_serial_number_and_read_camera_model_files_if_needed
         (_nh_public, rgb_camera_model, depth_camera_model);
 
     try {

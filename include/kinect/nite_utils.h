@@ -32,7 +32,6 @@ ________________________________________________________________________________
 // NITE
 #include <XnCppWrapper.h>
 // AD
-#include "vision_utils/utils/system_utils.h"
 
 namespace nite_utils {
 
@@ -47,14 +46,14 @@ static const char* KINECT_USB_INFO_FILE = "/tmp/kinect_usb_info.tmp";
  */
 inline void StringSplit(const std::string & str, const std::string & delim,
                         std::vector<std::string>* results) {
-  // maggieDebug3("StringSplit(str:'%s', delim:'%s')", str.c_str(), delim.c_str());
+  // ROS_DEBUG("StringSplit(str:'%s', delim:'%s')", str.c_str(), delim.c_str());
   results->clear();
   if (str == "")
     return;
   size_t delim_pos, search_pos = 0;
   while (search_pos <= str.size() - 1) {
     delim_pos = str.find(delim, search_pos);
-    //maggieDebug1("delim_pos:%i, search_pos:%i", delim_pos, search_pos);
+    //ROS_INFO("delim_pos:%i, search_pos:%i", delim_pos, search_pos);
     if (delim_pos == std::string::npos) { // no more delim
       results->push_back(str.substr(search_pos));
       return;
@@ -92,7 +91,7 @@ std::string get_kinect_serial_number(const xn::Context & context) {
     creation_info_str_cleaned = creation_info_str.substr(0, arobase_pos);
   else
     creation_info_str_cleaned = creation_info_str;
-  std_utils::find_and_replace(creation_info_str_cleaned, "/", ":");
+  vision_utils::find_and_replace(creation_info_str_cleaned, "/", ":");
   //  ROS_WARN("creation_info_str:'%s', creation_info_str_cleaned:'%s'",
   //           creation_info_str.c_str(), creation_info_str_cleaned.c_str());
   if (creation_info_str_cleaned.size() == 0) {
@@ -104,7 +103,7 @@ std::string get_kinect_serial_number(const xn::Context & context) {
   std::ostringstream usb_info_cmd;
   usb_info_cmd << "lsusb -v -d " << creation_info_str_cleaned
                << " > " << KINECT_USB_INFO_FILE;
-  int return_value = system_utils::exec_system(usb_info_cmd.str());
+  int return_value = vision_utils::exec_system(usb_info_cmd.str());
   if (return_value < 0) {
     ROS_WARN("get_kinect_serial_number() : Could not exec '%s'",
                 usb_info_cmd.str().c_str());
@@ -113,7 +112,7 @@ std::string get_kinect_serial_number(const xn::Context & context) {
 
   // read the output file
   std::string usb_info_file;
-  bool file_reading_success = std_utils::retrieve_file
+  bool file_reading_success = vision_utils::retrieve_file
       (KINECT_USB_INFO_FILE, usb_info_file);
   if (!file_reading_success) {
     ROS_WARN("get_kinect_serial_number() : Could not read file '%s'",
@@ -122,9 +121,9 @@ std::string get_kinect_serial_number(const xn::Context & context) {
   }
 
   // remove line breaks
-  std_utils::find_and_replace(usb_info_file, "\n", " ");
+  vision_utils::find_and_replace(usb_info_file, "\n", " ");
   // remove all double spaces
-  while (std_utils::find_and_replace(usb_info_file, "  ", " ") > 0)
+  while (vision_utils::find_and_replace(usb_info_file, "  ", " ") > 0)
   {}
 
   // look for 'iSerial' in the parsed file
@@ -138,7 +137,7 @@ std::string get_kinect_serial_number(const xn::Context & context) {
                 searched_token.c_str(), KINECT_USB_INFO_FILE);
     return "";
   }
-  // ROS_WARN("tokens:'%s'", std_utils::accessible_to_string(tokens).c_str());
+  // ROS_WARN("tokens:'%s'", vision_utils::accessible_to_string(tokens).c_str());
 
   // advance the pointer by 2
   for (unsigned int i = 0; i < 2; ++i) {

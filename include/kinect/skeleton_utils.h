@@ -109,7 +109,7 @@ public:
    */
   std::string direct_search(const JointId id) {
     std::string ans;
-    if (std_utils::direct_search(_names, id, ans))
+    if (vision_utils::direct_search(_names, id, ans))
       return ans;
     return "ERROR";
   }
@@ -119,7 +119,7 @@ public:
    */
   JointId reverse_search(const std::string name) {
     JointId ans;
-    if (std_utils::reverse_search(_names, name, ans))
+    if (vision_utils::reverse_search(_names, name, ans))
       return ans;
     return -1;
   }
@@ -225,7 +225,7 @@ inline void draw_skeleton_list(cv::Mat3b & img,
        ++skeleton_idx) {
     cv::Scalar curr_color(255, 255, 255);
     // int curr_user_id = skeleton_list.skeletons[skeleton_idx].user_id;
-    //    color_utils::indexed_color255
+    //    vision_utils::indexed_color255
     //        (curr_color[0], curr_color[1], curr_color[2], curr_user_id);
     draw_skeleton(img, skeleton_list.skeletons[skeleton_idx], curr_color,
                   thickness, lineType, shift);
