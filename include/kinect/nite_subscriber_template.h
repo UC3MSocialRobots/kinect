@@ -52,6 +52,7 @@ ________________________________________________________________________________
 #else // not USE_EXACT_TIME
 #include <message_filters/sync_policies/approximate_time.h>
 #endif
+#include <image_geometry/pinhole_camera_model.h>
 #include <image_transport/subscriber_filter.h>
 #include <message_filters/subscriber.h>
 #include <message_filters/sync_policies/exact_time.h>
@@ -63,8 +64,9 @@ ________________________________________________________________________________
 #include <opencv2/highgui/highgui.hpp>
 // AD
 #include <kinect/NiteSkeletonList.h>
-#include.*kinect_openni_utils.h.*
-//#include "vision_utils/timer.h"
+
+#include "vision_utils/get_kinect_serial_number_and_read_camera_model_files_if_needed.h"
+#include "vision_utils/user_image_to_rgb.h"
 
 class NiteSubscriberTemplate {
 public:

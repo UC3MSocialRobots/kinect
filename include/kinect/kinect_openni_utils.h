@@ -39,9 +39,6 @@ useful functions for working with a Kinect
 
 // OpenCV
 #include <opencv2/core/core.hpp>
-#include "kinect/std_utils.h"
-
-
 
 inline std::string KINECT_SERIAL_ARNAUD() { return "A00365A10630110A"; }
 inline std::string KINECT_SERIAL_LAB() { return "A00365A82054035A"; }

@@ -116,8 +116,10 @@ along with a message enclosing their 3D position.
 #include <XnCppWrapper.h>
 // AD
 #include "kinect/skeleton_utils.h"
-#include "kinect/user_image_to_rgb.h"
+#include "vision_utils/user_image_to_rgb.h"
 #include <vision_utils/ros_object_from_file.h>
+#include <vision_utils/read_camera_info_binary_files.h>
+
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -149,80 +151,6 @@ public:
   static const int QUEUE_SIZE = 10;
 
   ////////////////////////////////////////////////////////////////////////////////
-
-  /*!
-   \param filename
-      a relative or absolute filename
-   \return true if the file with given filename exists
-  */
-  static inline bool file_exists(const std::string & filename) {
-    return boost::filesystem::exists(filename)
-        && boost::filesystem::is_regular_file(filename);
-  }
-
-  ////////////////////////////////////////////////////////////////////////////////
-
-  template<class _T>
-  static void ros_object_from_string(const std::string & object_str,
-                              _T & my_value) {
-    uint32_t serial_size2 = object_str.size();
-    ros::serialization::IStream stream_in((unsigned char*) object_str.data(), serial_size2);
-    ros::serialization::Serializer<_T>::read(stream_in, my_value);
-  }
-
-  ////////////////////////////////////////////////////////////////////////////////
-
-  /*!
-   * Read the camera info objects from ROS binary files.
-   * These binary files can be obtained for instance using
-   * vision_utils::ros_object_to_file().
-   * \param kinect_serial_number
-   *   The serial number of the Kinect, for instance KINECT_SERIAL_ARNAUD()
-   * \param depth_camera_info, rgb_camera_info
-   *    Output: the depth and rgb camera info, filled by reading the bags.
-   * \return true if success
-   */
-  static bool read_camera_info_binary_files(const std::string & kinect_serial_number,
-                                     sensor_msgs::CameraInfo & depth_camera_info,
-                                     sensor_msgs::CameraInfo & rgb_camera_info) {
-    // load binary files
-    std::ostringstream prefix;
-    prefix << ros::package::getPath("kinect") << "/data/"  << kinect_serial_number;
-
-    // read the binary for depth image
-    std::ostringstream depth_binary_name;
-    depth_binary_name << prefix.str() << "_depth.dat";
-    if (!file_exists(depth_binary_name.str())) {
-      printf("The depth camera info binary '%s' does not exist!\n",
-             depth_binary_name.str().c_str());
-      return false;
-    }
-    vision_utils::ros_object_from_file(depth_binary_name.str(), depth_camera_info);
-
-    // read the binary for rgb image
-    std::ostringstream rgb_binary_name;
-    rgb_binary_name << prefix.str() << "_rgb.dat";
-    if (!file_exists(rgb_binary_name.str())) {
-      printf("The rgb camera info binary '%s' does not exist!\n",
-             rgb_binary_name.str().c_str());
-      return false;
-    }
-    vision_utils::ros_object_from_file(rgb_binary_name.str(), rgb_camera_info);
-
-    // if we are here, success
-    //  printf("read_camera_info_binary_files(): reading from '%s' and '%s' was a success.\n",
-    //            depth_binary_name.str().c_str(), rgb_binary_name.str().c_str());
-    return true;
-  } // end read_camera_info_binary_files()
-
-  //////////////////////////////////////////////////////////////////////////////
-
-  //  //! ctor
-  //  NitePrimitiveClass() {
-  //    init();
-  //  }
-
-  //////////////////////////////////////////////////////////////////////////////
 
   void init_nite() {
     ROS_WARN("init_nite()");
@@ -363,7 +291,7 @@ public:
         ROS_WARN("Could not get kinect_serial_number param on '%s'! Not publishing cam info",
                  kinect_serial_param_name.c_str());
       }
-      else if (read_camera_info_binary_files
+      else if (vision_utils::read_camera_info_binary_files
                (kinect_serial, depth_camera_info, rgb_camera_info)) {
         rgb_caminfo_pub = nh_public.advertise<sensor_msgs::CameraInfo>("rgb/camera_info", 1);
         depth_caminfo_pub = nh_public.advertise<sensor_msgs::CameraInfo>("depth/camera_info", 1);
@@ -559,7 +487,7 @@ public:
     depth16.convertTo(depth8_illus, CV_8U, 32.f / 1000);
 
     // paint the user
-    user_image_to_rgb(user8, user_illus, 8);
+    vision_utils::user_image_to_rgb(user8, user_illus, 8);
     skeleton_utils::draw_skeleton_list(user_illus, skeleton_list_msg, 2);
 
     cv::imshow("depth8_illus", depth8_illus);

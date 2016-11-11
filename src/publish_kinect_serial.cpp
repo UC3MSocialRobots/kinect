@@ -44,7 +44,6 @@ lsusb -v -d 045e:02ae | grep -e "iSerial" | awk '{print $3}'
  */
 
 #include <ros/ros.h>
-#include "kinect/std_utils.h"
 #include <vision_utils/exec_system.h>
 #include <vision_utils/exec_system_get_output.h>
 #include <vision_utils/find_and_replace.h>

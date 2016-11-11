@@ -3,7 +3,7 @@
   \author      Arnaud Ramey <arnaud.a.ramey@gmail.com>
                 -- Robotics Lab, University Carlos III of Madrid
   \date        2013/4/22
-  
+
 ________________________________________________________________________________
 
 This program is free software: you can redistribute it and/or modify
@@ -24,6 +24,7 @@ Some tests of the namespace \a skeleton_utils
  */
 
 #include "kinect/skeleton_utils.h"
+#include <ros/ros.h>
 #include <gtest/gtest.h>
 
 ////////////////////////////////////////////////////////////////////////////////

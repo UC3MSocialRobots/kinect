@@ -3,7 +3,7 @@
   \author      Arnaud Ramey <arnaud.a.ramey@gmail.com>
                 -- Robotics Lab, University Carlos III of Madrid
   \date        2013/9/20
-  
+
 ________________________________________________________________________________
 
 This program is free software: you can redistribute it and/or modify
@@ -24,10 +24,9 @@ A simple test file for \a NiteSubscriberTemplate.
 
  */
 
-//#include "vision_utils/timestamp.h"
 #include "kinect/nite_subscriber_template.h"
 //
-#include "kinect/user_image_to_rgb.h"
+#include "vision_utils//user_image_to_rgb.h"
 #include "kinect/skeleton_utils.h"
 
 class FooNiteSubscriber : public NiteSubscriberTemplate {
@@ -49,8 +48,8 @@ public:
     //vision_utils::depth_image_to_vizualisation_color_image
     //    (depth, depth_illus, vision_utils::FULL_RGB_SCALED);
 
-    user_image_to_rgb(user, user_illus, 8);
-    vision_utils::draw_skeleton_list(user_illus, skeleton_list);
+    vision_utils::user_image_to_rgb(user, user_illus, 8);
+    skeleton_utils::draw_skeleton_list(user_illus, skeleton_list);
 
     cv::imshow("color", color);
     cv::imshow("depth", depth);

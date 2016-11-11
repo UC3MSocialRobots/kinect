@@ -57,7 +57,7 @@ in meaningful colors.
 #include <cv_bridge/cv_bridge.h>
 #include <opencv2/imgproc/imgproc.hpp>
 // kinect
-#include "kinect/user_image_to_rgb.h"
+#include "vision_utils/user_image_to_rgb.h"
 #include "kinect/skeleton_utils.h"
 
 cv_bridge::CvImageConstPtr bridge_img;
@@ -87,7 +87,7 @@ void image_callback(const sensor_msgs::ImageConstPtr& msg) {
     return;
   }
 
-  user_image_to_rgb(bridge_img->image, _out_img, _data_size);
+  vision_utils::user_image_to_rgb(bridge_img->image, _out_img, _data_size);
   if ((ros::Time::now() - _skeleton_time).toSec() < 1)
     skeleton_utils::draw_skeleton_list(_out_img, _skeleton_list);
 

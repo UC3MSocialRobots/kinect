@@ -24,7 +24,7 @@ Some tests for the file user_image_to_rgb
 
  */
 
-#include "kinect/user_image_to_rgb.h"
+#include "vision_utils/user_image_to_rgb.h"
 #include <opencv2/highgui/highgui.hpp>
 #include <ros/package.h>
 #include <gtest/gtest.h>
@@ -35,7 +35,7 @@ TEST(TestSuite, simple_mask) {
   cv::Mat3b multimask_illus;
   unsigned int ntimes = 10;
   for (unsigned int time = 0; time < ntimes; ++time) {
-    user_image_to_rgb(multimask, multimask_illus);
+    vision_utils::user_image_to_rgb(multimask, multimask_illus);
   } // end for (time)
   ASSERT_TRUE(multimask_illus.size() == multimask.size());
   //cv::imshow("multimask_illus", multimask_illus);
