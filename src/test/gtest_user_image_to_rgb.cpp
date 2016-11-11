@@ -30,8 +30,8 @@ Some tests for the file user_image_to_rgb
 #include <gtest/gtest.h>
 
 TEST(TestSuite, simple_mask) {
-  std::string IMG_DIR = ros::package::getPath("kinect") + std::string("/data/tests/");
-  cv::Mat multimask = cv::imread(IMG_DIR + "masks.png", CV_LOAD_IMAGE_GRAYSCALE);
+  std::string IMG_DIR  = ros::package::getPath("kinect") + std::string("/data/tests/");
+  cv::Mat multimask = cv::imread(IMG_DIR +  + "masks.png", CV_LOAD_IMAGE_GRAYSCALE);
   cv::Mat3b multimask_illus;
   unsigned int ntimes = 10;
   for (unsigned int time = 0; time < ntimes; ++time) {

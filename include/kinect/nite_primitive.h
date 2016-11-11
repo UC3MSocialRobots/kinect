@@ -108,7 +108,6 @@ along with a message enclosing their 3D position.
 #include <image_transport/image_transport.h>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
-#include.*kinect_openni_utils.h.*
 #endif // NITE_FX not defined
 
 // NITE
@@ -118,7 +117,7 @@ along with a message enclosing their 3D position.
 // AD
 #include "kinect/skeleton_utils.h"
 #include "kinect/user_image_to_rgb.h"
-
+#include <vision_utils/ros_object_from_file.h>
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -418,7 +417,7 @@ public:
 
   void run() {
     ROS_WARN("run()");
-    vision_utils::Rate r(rate);
+    skeleton_utils::Rate r(rate);
 
     while (ros::ok()) {
       DEBUG_PRINT("run loop");
@@ -561,7 +560,7 @@ public:
 
     // paint the user
     user_image_to_rgb(user8, user_illus, 8);
-    vision_utils::draw_skeleton_list(user_illus, skeleton_list_msg, 2);
+    skeleton_utils::draw_skeleton_list(user_illus, skeleton_list_msg, 2);
 
     cv::imshow("depth8_illus", depth8_illus);
     cv::imshow("user_illus", user_illus);
@@ -709,7 +708,7 @@ public:
       if (!g_UserGenerator.GetSkeletonCap().IsTracking(curr_user_id))
         continue;
 
-      if (!_published_joints.getType() == XmlRpc::XmlRpcValue::TypeArray)
+      if (_published_joints.getType() != XmlRpc::XmlRpcValue::TypeArray)
         continue;
 
       for (int i = 0; i < _published_joints.size(); i++){
@@ -975,7 +974,7 @@ private:
   XnChar g_strPose[20];
 
   // ros::Time
-  vision_utils::Time messages_timestamp;
+  skeleton_utils::Time messages_timestamp;
 
   //! true for displaying input
   bool display_images_flag;
@@ -995,7 +994,7 @@ private:
   //! the message that will be filled with skeleton
   kinect::NiteSkeletonList skeleton_list_msg;
   //! convert joint ID to string
-  vision_utils::JointId2StringConverter joint_id_converter;
+  skeleton_utils::JointId2StringConverter joint_id_converter;
   //! the skeleton publisher
 #ifndef NITE_FX
   ros::Publisher skeletons_pub;

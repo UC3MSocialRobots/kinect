@@ -36,6 +36,9 @@ ________________________________________________________________________________
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include "kinect/std_utils.h"
+#include "vision_utils/map_direct_search.h"
+#include "vision_utils/map_reverse_search.h"
+#include "vision_utils/timer.h"
 
 namespace skeleton_utils {
 
