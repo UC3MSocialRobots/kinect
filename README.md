@@ -65,3 +65,9 @@ Code API
 Cf class ```NitePrimitiveClass```
 and both implementations
 ```nite_primitive_standalone.cpp``` and ```nite_primitive.cpp```
+
+
+Licence
+=======
+
+LGPL v3 (GNU Lesser General Public License version 3).
