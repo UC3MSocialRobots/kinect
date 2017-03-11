@@ -25,7 +25,7 @@
   <depend>tf</depend>
 
   <!-- AD -->
-  <!-- no dependency -->
+  <depend>vision_utils</depend>
 
   <export>
     <rosdoc config="rosdoc.yaml" /> <!-- http://wiki.ros.org/rosdoc_lite -->

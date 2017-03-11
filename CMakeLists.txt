@@ -4,7 +4,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra") # add extra warnings
 ### 2- Package Name
 project(kinect)
 ### 3 - Find other CMake/Catkin packages needed for build
-SET(ROSDEPS cv_bridge message_generation geometry_msgs image_geometry image_transport rosbag tf)
+SET(ROSDEPS cv_bridge message_generation geometry_msgs image_geometry
+            image_transport rosbag tf  vision_utils)
 find_package(catkin REQUIRED COMPONENTS ${ROSDEPS})
 find_package(orocos_kdl REQUIRED)
 
@@ -34,11 +35,6 @@ catkin_package(
   DEPENDS orocos_kdl
 )
 ### 7 - Libraries/Executables to build (add_library()/add_executable()/target_link_libraries())
-# get vision_utils includes from SVN
-execute_process( # https://cmake.org/cmake/help/v3.0/command/execute_process.html
-  COMMAND bash svn_vision_utils.bash
-  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include
-)
 include_directories(
   include
   ${catkin_INCLUDE_DIRS}
