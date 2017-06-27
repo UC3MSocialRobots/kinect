@@ -28,7 +28,7 @@ http://answers.ros.org/question/12328/using-openni_launch-in-a-multirobot-system
 <include file="$(find kinect)/launch/kinect_aux.launch">
   <arg name="robot" value="$(arg robot)" />
   <arg name="kinect_aux_tf_broadcaster_args"
-       value="_frame_id:=/base_link  _child_frame_id:=/$(arg robot)_$(camera_type)_link
+       value="_frame_id:=/base_link  _child_frame_id:=/$(arg robot)_$(arg camera_type)_link
               _z:=1.3" />
 </include>
 
