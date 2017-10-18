@@ -38,7 +38,7 @@
   <node pkg="kinect" type="joy2kinect_tilt.exe" name="joy2kinect_tilt"
         args="_up_button:=6  _down_button:=4" output="screen" respawn="true" />
   <node pkg="joy" type="joy_node" name="joy_node"
-        args="_dev:=/dev/input/js0   _autorepeat_rate:=5" output="screen" respawn="true" />
+        args="_dev:=/dev/input/js1   _autorepeat_rate:=5" output="screen" respawn="true" />
 </group>
 </launch>
 
