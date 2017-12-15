@@ -7,17 +7,17 @@
       * /$(arg robot)/depth_remote
     -->
     <arg name="robot"/>
-    
+
     <arg name="publish_tf" default="true" />
-    
+
     <!-- Skip N images for every image published (rgb/depth/depth_registered/ir) Range: 0 to 10 -->
     <arg name="data_skip" default="4" />
-    
+
     <!-- the three different low-level drivers - please choose one and only one -->
-    <arg name="use_freenect" default="false"/>
-    <arg name="use_openni1" default="true"/>
+    <arg name="use_freenect" default="true"/>
+    <arg name="use_openni1" default="false"/>
     <arg name="use_openni2" default="false"/>
-    
+
     <!-- pass calibration files if needed -->
     <arg name="rgb_camera_info_url"   default="" />
     <arg name="depth_camera_info_url" default="" />
@@ -30,7 +30,7 @@
     <remap from="/$(arg robot)/depth_remote" to="/$(arg robot)/depth"/>
 
     <!-- include kinect_node_remote.launch and pass the params -->
-    
+
     <include file="$(find kinect)/launch/kinect_node_remote.launch">
         <arg name="robot" value="$(arg robot)" />
         <arg name="use_freenect" value="$(arg use_freenect)" />
